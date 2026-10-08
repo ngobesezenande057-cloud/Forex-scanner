@@ -14,6 +14,21 @@
 .tabs{display:flex;gap:8px;margin:0 0 18px}.tab{border-radius:10px;padding:10px 14px;border:1px solid var(--border);background:#15283e;color:#afc4de;font-weight:750}.tab.on{background:#254a5b;color:#ddfff9;border-color:#4a9c9a}.controls{display:grid;grid-template-columns:minmax(200px,1fr) auto auto;gap:12px;align-items:end}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:8px}.field input,.field select{width:100%;background:#0b1728;border:1px solid #456078;color:var(--text);border-radius:9px;padding:12px}.btn{background:#256057;color:#eafff9;border:1px solid #45897e;font-weight:750;border-radius:10px;padding:12px 16px;min-height:45px}.btn.secondary{background:#152b44;color:#c4d8f1;border-color:#496077}.fine{font-size:12px;line-height:1.6;color:var(--muted);margin-top:14px}.fine a{color:#b5d3ff}.message{font-size:12px;color:#c5d8ff;min-height:22px;margin-top:12px}.feedbar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:13px;color:#afbdd3;font-size:12px}.feedbar b{color:#e5eefb}.hidden{display:none!important}.uploadcontrols{display:grid;grid-template-columns:155px 1fr auto;gap:12px;align-items:end}
 .overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:20px 0 31px}.metric{background:#12223a;border-radius:13px;padding:18px;border:1px solid var(--border)}.metric span{display:block;color:var(--muted);font-size:11px;letter-spacing:.05em}.metric b{display:block;font-size:26px;line-height:1.3;margin-top:6px;font-variant-numeric:tabular-nums}.sectionbar{display:flex;gap:12px;justify-content:space-between;align-items:center;margin:0 0 15px}.sectionbar h2{font-size:20px;margin:0}.filters{display:flex;flex-wrap:wrap;gap:7px}.filter{background:#11243c;color:#abc0d8;border:1px solid #344b68;border-radius:99px;padding:8px 13px;font-size:11px}.filter.on{background:#345571;color:white;border-color:#527fa6}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(155deg,#152a43,#0d1b2d);border:1px solid var(--border);border-radius:16px;padding:19px;min-width:0}.chead{display:flex;justify-content:space-between;align-items:start;gap:8px}.pair{font-size:22px;font-weight:850;letter-spacing:.015em}.sub{font-size:11px;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}.state{border:1px solid #546782;border-radius:8px;color:#becbe4;padding:7px 9px;white-space:nowrap;font-weight:800;font-size:10px}.state.long{color:var(--aqua);border-color:#2e8179}.state.short{color:var(--red);border-color:#a95871}.state.historical{color:var(--amber);border-color:#91734b}.spark{margin:13px 0 8px;height:65px}.numbers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.number{background:#0c192a;border:1px solid #253a50;border-radius:8px;padding:10px;min-width:0}.number span{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.number b{font-size:12px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.reason{font-size:12px;line-height:1.6;color:#b7c9e0;margin:13px 0 0}.empty{grid-column:1/-1;border:1px dashed #4b637d;padding:30px 15px;border-radius:13px;text-align:center;color:var(--muted)}footer{margin-top:35px;border-top:1px solid var(--border);padding-top:20px;color:#99acc4;font-size:12px;line-height:1.7}
 @media(max-width:740px){.wrap{padding:18px 13px 55px}.hero{margin-top:29px}.controls,.uploadcontrols{grid-template-columns:1fr}.overview{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:14px}.cards{grid-template-columns:1fr}.sectionbar{align-items:flex-start;flex-direction:column}.panel{padding:16px}.brand{font-size:16px}.pill{font-size:9px}.number{padding:8px}.number b{font-size:11px}}
+
+/* Chart and historical pattern log — no third-party chart scripts */
+.study{margin:0 0 28px}.study h2{font-size:21px;margin:0}.studyhead{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-bottom:15px}
+.tagline{font-size:12px;color:var(--muted);margin:3px 0 0}.chartcontrols{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:11px}
+.chartcontrols label{font-size:12px;color:var(--muted)}.chartcontrols select{border:1px solid #456078;background:#0b1728;color:#e4f2ff;border-radius:9px;padding:10px 12px;min-height:41px}
+.cbtn{background:#1a3048;border:1px solid #39546e;color:#d5e5fa;border-radius:9px;padding:9px 12px;font-weight:750;min-height:41px}
+.cbtn.on{background:#24596b;border-color:#4e95a2;color:#e7fcff}.chart-box{background:#09192a;border:1px solid #273e58;border-radius:12px;padding:8px;min-height:250px}
+.chart-box svg{width:100%;height:auto;display:block;touch-action:pan-y}.chartfoot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:12px;color:#aabdd5;font-size:12px}
+.chartfoot input{accent-color:#54dec3;min-width:150px;flex:1;max-width:440px}.legend{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0;color:#bacce1;font-size:11px}
+.legend i{display:inline-block;width:16px;height:3px;vertical-align:middle;margin-right:4px;border-radius:2px}
+.charttip{font-size:12px;min-height:34px;margin-top:8px;padding:8px 10px;border-radius:8px;background:#112941;color:#d0dff2;font-variant-numeric:tabular-nums}
+.historytable{overflow-x:auto;-webkit-overflow-scrolling:touch}.historytable table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}.historytable th{text-align:left;font-size:11px;color:#aabbd1;font-weight:700;border-bottom:1px solid #344961;padding:11px 10px}.historytable td{border-bottom:1px solid #263c54;padding:11px 10px;color:#e0e9f8;font-variant-numeric:tabular-nums}
+.historytable tr:last-child td{border-bottom:0}.historytable .bull{color:var(--aqua);font-weight:800}.historytable .bear{color:var(--red);font-weight:800}
+.chart-empty{padding:90px 12px;text-align:center;color:var(--muted);font-size:13px}.mini{font-size:11px;color:#a7bad1}.chartjump{margin-top:9px;background:#173b53;color:#b8eeff;border:1px solid #347088;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:800}
+@media(max-width:740px){.studyhead{flex-direction:column}.chartcontrols select{max-width:100%}.chart-box{padding:3px}.chartfoot input{flex-basis:100%;max-width:none;order:2}.chart-controls-text{order:1}.charttip{font-size:11px}.historytable th,.historytable td{padding:9px 8px}}
 </style>
 </head>
 <body>
@@ -32,15 +47,42 @@
 </div>
 </section>
 <section class="overview"><div class="metric"><span>Tracked pairs</span><b>5</b></div><div class="metric"><span>Pairs with data</span><b id="loaded">0</b></div><div class="metric"><span>Recently updated</span><b id="fresh">0</b></div><div class="metric"><span>Recent patterns</span><b id="setups">0</b></div></section>
+
+<section class="study" id="chartSection">
+  <div class="studyhead"><div><h2>Interactive candlestick chart</h2><p class="tagline">Tap a candle to inspect OHLC • browse older candles • switch M1 / M5</p></div><span class="pill">CLOSED CANDLES ONLY</span></div>
+  <div class="panel">
+    <div class="chartcontrols">
+      <label for="chartPair">Pair</label><select id="chartPair"><option value="EURUSD">EUR / USD</option><option value="GBPUSD">GBP / USD</option><option value="USDJPY">USD / JPY</option><option value="AUDUSD">AUD / USD</option><option value="USDCAD">USD / CAD</option></select>
+      <button class="cbtn on" id="tfM1" type="button" aria-pressed="true">M1</button><button class="cbtn" id="tfM5" type="button" aria-pressed="false">M5</button>
+      <button class="cbtn" id="zoomIn" type="button" aria-label="Zoom in chart">+ Zoom</button><button class="cbtn" id="zoomOut" type="button" aria-label="Zoom out chart">− Zoom</button>
+    </div>
+    <div class="legend"><span><i style="background:#54dec3"></i>Rising</span><span><i style="background:#ff8798"></i>Falling</span><span><i style="background:#e9c779"></i>EMA 9</span><span><i style="background:#a1b9ff"></i>EMA 21</span><span><i style="background:#b798f0"></i>M5 EMA 200</span><span>↑/↓ = matching historical pattern</span></div>
+    <div class="chart-box" id="chartBox" aria-label="Interactive candlestick chart"><div class="chart-empty">Start the data feed or load a CSV to see candles.</div></div>
+    <div class="charttip" id="chartTip" role="status">Tap or point at a candle to inspect it.</div>
+    <div class="chartfoot"><button type="button" class="cbtn" id="chartPrev">← Older</button><button type="button" class="cbtn" id="chartNext">Newer →</button><button type="button" class="cbtn" id="chartLatest">Latest</button><input type="range" id="chartScroll" min="0" max="0" value="0" aria-label="Scroll through historical candles"><span id="chartRange" class="chart-controls-text">No candles</span></div>
+  </div>
+</section>
+<section class="study" id="historySection">
+  <div class="studyhead"><div><h2>Indicator pattern history</h2><p class="tagline">Patterns detected in loaded historical candles, not a live trade or alert log</p></div><span class="pill" id="historyCount">0 SAVED</span></div>
+  <div class="panel">
+    <div class="chartcontrols"><label for="historyPair">Show</label><select id="historyPair"><option value="all">All pairs</option><option value="EURUSD">EUR / USD</option><option value="GBPUSD">GBP / USD</option><option value="USDJPY">USD / JPY</option><option value="AUDUSD">AUD / USD</option><option value="USDCAD">USD / CAD</option></select><button class="cbtn" type="button" id="clearHistory">Clear saved history</button></div>
+    <div class="historytable" id="historyContent"><div class="empty">No matching indicator patterns have been found in the loaded candles.</div></div>
+    <p class="fine">Up to 250 unique matches are saved <strong>only in this browser</strong>; they are not synchronized between devices. The archive can include older candles from a feed or CSV. A pattern is not proof of a profitable trade or a real-time notification.</p>
+  </div>
+</section>
 <section><div class="sectionbar"><h2>Market overview</h2><div class="filters" aria-label="Market filters"><button class="filter on" data-filter="all" type="button">All pairs</button><button class="filter" data-filter="setups" type="button">Recent patterns</button><button class="filter" data-filter="missing" type="button">Old / missing data</button></div></div><div id="cards" class="cards"></div></section>
-<footer><strong>Data:</strong> <a href="https://biquote.io/docs/" target="_blank" rel="noopener noreferrer">biquote</a> public Forex candle API, subject to availability and provider terms. Forex prices may differ from JustMarkets and may be delayed. Every candle and setup is evaluated only after the relevant M1/M5 bars have closed. A 15-minute refresh can miss or delay patterns; Safari may pause it in the background. Market hours are generally 24/5. No orders, push alerts, brokerage access, SL/TP execution, accuracy promise, or financial recommendations. Use this as personal educational research; the feed is supplied by a third party and is not guaranteed.</footer>
+<footer><strong>Data:</strong> <a href="https://biquote.io/docs/" target="_blank" rel="noopener noreferrer">biquote</a> public Forex candle API, subject to availability and provider terms. Forex prices may differ from JustMarkets and may be delayed. Every candle and setup is evaluated only after the relevant M1/M5 bars have closed. The 5-minute refresh can miss or delay patterns; Safari may pause it in the background. Market hours are generally 24/5. No orders, push alerts, brokerage access, SL/TP execution, accuracy promise, or financial recommendations. Use this as personal educational research; the feed is supplied by a third party and is not guaranteed.</footer>
 </main>
 <script>
 'use strict';
 const PAIRS=['EURUSD','GBPUSD','USDJPY','AUDUSD','USDCAD'];
 const WAIT_MS=5*60*1000, FRESH_MS=12*60*1000, MIN_BARS=100;
-const barsByPair=new Map(), m5ByPair=new Map(), errorsByPair=new Map();
+const barsByPair=new Map(), m5ByPair=new Map(), errorsByPair=new Map(), pairSources=new Map();
 let source='feed',activeFilter='all',running=false,busy=false,timer=null,lastStarted=0,nextAt=0;
+let chartPair='EURUSD',chartTf='M1',chartBarsShown=60,chartRight=null,chartVisible=[],chartRows=[],historyPair='all';
+const HISTORY_KEY='aperture-patterns-v2';
+function loadHistory(){try{const raw=JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]');return Array.isArray(raw)?raw.filter(x=>PAIRS.includes(x.pair)&&['LONG_PATTERN','SHORT_PATTERN'].includes(x.type)&&Number.isFinite(x.t)&&['feed','csv'].includes(x.source)).slice(0,250):[]}catch{return []}}
+let patternHistory=loadHistory();
 const $=id=>document.getElementById(id);
 const safe=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=(v,d=2)=>v==null||!Number.isFinite(v)?'—':v.toFixed(d);
@@ -59,27 +101,105 @@ function atrAdx(rows,n=14){const atr=Array(rows.length).fill(null),adx=Array(row
  if(i<2*n-1)dxsum+=dx;else if(i===2*n-1){dxsum+=dx;adxVal=dxsum/n;adx[i]=adxVal}else{adxVal=((n-1)*adxVal+dx)/n;adx[i]=adxVal}
  }return{atr,adx}}
 function macroData(rows,externalM5=null){const chunks=new Map();for(const r of rows){const base=Math.floor(r.t/300000)*300000;if(!chunks.has(base))chunks.set(base,[]);chunks.get(base).push(r)}const candles=[];for(const [base,chunk] of [...chunks].sort((a,b)=>a[0]-b[0])){if(chunk.length===5&&chunk.every((v,i)=>v.t===base+i*60000))candles.push({t:base+240000,c:chunk[4].c})}if(externalM5){candles.length=0;for(const r of externalM5)candles.push({t:r.t+240000,c:r.c});}const macro=ema(candles.map(c=>c.c),200),out=Array(rows.length).fill(null);let j=0,last=null;for(let i=0;i<rows.length;i++){while(j<candles.length&&candles[j].t<=rows[i].t){if(macro[j]!=null)last=macro[j];j++}out[i]=last}return out}
+// Pattern matching: calculate on closed M1 candles with the most recent CLOSED M5 EMA available.
+function calculatePair(pair){
+ const src=barsByPair.get(pair)||[],cutoff=Math.floor(Date.now()/60000)*60000,rows=src.filter(x=>x.t<cutoff);
+ if(rows.length<MIN_BARS)return null;
+ const cl=rows.map(x=>x.c),fast=ema(cl,9),slow=ema(cl,21),macro=macroData(rows,m5ByPair.get(pair)),rsis=rsi(cl),calc=atrAdx(rows);
+ return{rows,fast,slow,macro,rsis,adx:calc.adx,atr:calc.atr};
+}
+function historicalMatches(calc){
+ if(!calc)return[];const out=[];
+ for(let i=1;i<calc.rows.length;i++){
+  const{rows,fast,slow,macro,rsis,adx,atr}=calc;
+  if(rows[i].t-rows[i-1].t!==60000)continue; // Ignore crossovers over feed gaps.
+  if([fast[i],fast[i-1],slow[i],slow[i-1],macro[i],rsis[i],adx[i],atr[i]].some(v=>v==null))continue;
+  const rising=fast[i-1]<=slow[i-1]&&fast[i]>slow[i],falling=fast[i-1]>=slow[i-1]&&fast[i]<slow[i];
+  const long=rows[i].c>macro[i]&&rising&&rsis[i]>50&&rsis[i]<70&&adx[i]>20;
+  const short=rows[i].c<macro[i]&&falling&&rsis[i]<50&&rsis[i]>30&&adx[i]>20;
+  if(long||short)out.push({t:rows[i].t,type:long?'LONG_PATTERN':'SHORT_PATTERN',price:rows[i].c,rsi:rsis[i],adx:adx[i]});
+ }
+ return out;
+}
+function archivePatterns(pair){
+ const calc=calculatePair(pair);if(!calc)return;
+ const matches=historicalMatches(calc),kind=pairSources.get(pair)||'feed',known=new Set(patternHistory.map(v=>`${v.source}:${v.pair}:${v.t}:${v.type}`));let added=false;
+ for(const x of matches){const key=`${kind}:${pair}:${x.t}:${x.type}`;if(known.has(key))continue;patternHistory.push({...x,pair,source:kind,firstSeen:Date.now()});known.add(key);added=true}
+ if(added){patternHistory.sort((a,b)=>b.t-a.t);patternHistory=patternHistory.slice(0,250);try{localStorage.setItem(HISTORY_KEY,JSON.stringify(patternHistory))}catch{}renderHistory()}
+}
+function renderHistory(){
+ const items=patternHistory.filter(x=>historyPair==='all'||x.pair===historyPair).sort((a,b)=>b.t-a.t);
+ $('historyCount').textContent=`${patternHistory.length} SAVED`;
+ if(!items.length){$('historyContent').innerHTML='<div class="empty">No matching indicator patterns have been found in the loaded candles yet.</div>';return}
+ const rows=items.slice(0,60).map(x=>`<tr><td>${safe(timeFmt(x.t+60000))}</td><td>${safe(x.pair)}</td><td class="${x.type==='LONG_PATTERN'?'bull':'bear'}">${x.type==='LONG_PATTERN'?'↑ Bullish':'↓ Bearish'}</td><td>${fmt(x.price,x.pair==='USDJPY'?3:5)}</td><td>${fmt(x.rsi)}</td><td>${fmt(x.adx)}</td><td>${x.source==='csv'?'CSV':'Feed'}</td></tr>`).join('');
+ $('historyContent').innerHTML=`<table><thead><tr><th>Closed at (UTC)</th><th>Pair</th><th>Pattern</th><th>Close</th><th>RSI</th><th>ADX</th><th>Source</th></tr></thead><tbody>${rows}</tbody></table>${items.length>60?`<p class="fine">Showing the newest 60 of ${items.length} matches.</p>`:''}`;
+}
+function groupM5(m1){const groups=new Map();for(const row of m1){const t=Math.floor(row.t/300000)*300000;if(!groups.has(t))groups.set(t,[]);groups.get(t).push(row)}return[...groups].sort((a,b)=>a[0]-b[0]).flatMap(([t,part])=>part.length===5&&part.every((v,i)=>v.t===t+i*60000)?[{t,o:part[0].o,h:Math.max(...part.map(x=>x.h)),l:Math.min(...part.map(x=>x.l)),c:part[4].c}]:[])}
+function chartCandles(){
+ if(chartTf==='M1')return (barsByPair.get(chartPair)||[]).filter(x=>x.t<Math.floor(Date.now()/60000)*60000);
+ const base=m5ByPair.get(chartPair)||groupM5(barsByPair.get(chartPair)||[]);
+ return base.filter(x=>x.t<Math.floor(Date.now()/300000)*300000);
+}
+function chartPath(values,from,to,X,Y){let d='',open=false;for(let j=from;j<to;j++){const v=values[j];if(v==null||!Number.isFinite(v)){open=false;continue}d+=(open?'L':'M')+X(j-from).toFixed(2)+','+Y(v).toFixed(2)+' ';open=true}return d}
+function renderChart(){
+ chartRows=chartCandles();const total=chartRows.length;
+ if(!total){$('chartBox').innerHTML='<div class="chart-empty">Start the feed or upload historical CSV candles to view the chart.</div>';$('chartRange').textContent='No candles';$('chartScroll').max='0';$('chartScroll').value='0';chartVisible=[];return}
+ const count=Math.min(chartBarsShown,total),maxRight=total,right=Math.max(count,Math.min(chartRight??total,maxRight)),left=right-count;
+ chartRight=right;chartVisible=chartRows.slice(left,right);$('chartScroll').min=String(count);$('chartScroll').max=String(total);$('chartScroll').value=String(right);$('chartScroll').disabled=total<=count;
+ $('chartRange').textContent=`${left+1}–${right} of ${total} closed ${chartTf} candles`;
+ const closes=chartRows.map(x=>x.c),e9=ema(closes,9),e21=ema(closes,21),e200=chartTf==='M5'?ema(closes,200):null;
+ const m1macro=chartTf==='M1'?macroData(chartRows,m5ByPair.get(chartPair)):null;
+ const lines=chartTf==='M1'?[e9,e21,m1macro]:[e9,e21,e200];
+ const W=Math.max(340,Math.floor($('chartBox').clientWidth-18)),H=window.innerWidth<=740?335:385,pl=14,pr=77,pt=27,pb=43,cw=W-pl-pr,ch=H-pt-pb;
+ const values=chartVisible.flatMap(x=>[x.h,x.l]);for(const l of lines)for(let i=left;i<right;i++)if(Number.isFinite(l[i]))values.push(l[i]);
+ const lo=Math.min(...values),hi=Math.max(...values),pad=(hi-lo)*.10||lo*.0005||.0001,min=lo-pad,max=hi+pad,dy=max-min;
+ const X=i=>pl+(i+.5)*cw/count,Y=v=>pt+(max-v)/dy*ch;const priceDigits=chartPair==='USDJPY'?3:5;
+ let svg=`<svg id="priceChart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${chartPair} ${chartTf} interactive candlestick chart">`;
+ for(let k=0;k<=4;k++){const y=pt+k*ch/4;svg+=`<line x1="${pl}" y1="${y}" x2="${W-pr+5}" y2="${y}" stroke="#274158" stroke-dasharray="4 7"/><text x="${W-pr+12}" y="${y+4}" fill="#c3d4eb" font-size="12">${fmt(max-k*dy/4,priceDigits)}</text>`}
+ for(let i=0;i<count;i++){const c=chartVisible[i],x=X(i),color=c.c>=c.o?'#54dec3':'#ff8798',yH=Y(c.h),yL=Y(c.l),yO=Y(c.o),yC=Y(c.c),w=Math.max(2,Math.min(16,cw/count*.68));svg+=`<line x1="${x}" y1="${yH}" x2="${x}" y2="${yL}" stroke="${color}" stroke-width="1.5"/><rect x="${x-w/2}" y="${Math.min(yO,yC)}" width="${w}" height="${Math.max(1.5,Math.abs(yC-yO))}" rx=".8" fill="${color}"/>`}
+ const lc=['#e9c779','#a1b9ff','#b798f0'];for(let k=0;k<lines.length;k++){const d=chartPath(lines[k],left,right,X,Y);if(d)svg+=`<path d="${d}" fill="none" stroke="${lc[k]}" stroke-width="${k===2?2:2.5}" ${k===2?'stroke-dasharray="8 5"':''} stroke-linejoin="round"/>`}
+ if(chartTf==='M1'){const set=new Map(patternHistory.filter(x=>x.pair===chartPair).map(x=>[x.t,x]));for(let i=0;i<count;i++){const rec=set.get(chartVisible[i].t);if(!rec)continue;const y=rec.type==='LONG_PATTERN'?Math.min(H-pb-10,Y(chartVisible[i].l)+22):Math.max(pt+10,Y(chartVisible[i].h)-18);svg+=`<text x="${X(i)}" y="${y}" font-size="19" font-weight="bold" text-anchor="middle" fill="${rec.type==='LONG_PATTERN'?'#54dec3':'#ff8798'}">${rec.type==='LONG_PATTERN'?'↑':'↓'}</text>`}}
+ for(const i of [0,Math.floor((count-1)/2),count-1]){const t=chartVisible[i]?.t;if(t!==undefined)svg+=`<text x="${X(i)}" y="${H-12}" font-size="12" fill="#a7bcd5" text-anchor="middle">${new Date(t).toLocaleString('en-GB',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'short',timeZone:'UTC',hour12:false})}</text>`}
+ svg+=`<line id="crossLine" x1="0" x2="0" y1="${pt}" y2="${H-pb}" stroke="#d3e7ff" stroke-dasharray="3 5" style="display:none"/><rect x="${pl}" y="${pt}" width="${cw}" height="${ch}" fill="transparent" id="chartTouch"/></svg>`;
+ $('chartBox').innerHTML=svg;
+ const chart=$('priceChart');const inspect=e=>{const box=chart.getBoundingClientRect(),x=(e.clientX-box.left)/box.width*W;if(x<pl||x>W-pr)return;const i=Math.max(0,Math.min(count-1,Math.floor((x-pl)/cw*count))),r=chartVisible[i];if(!r)return;const xx=X(i),line=$('crossLine');line.setAttribute('x1',xx);line.setAttribute('x2',xx);line.style.display='block';$('chartTip').textContent=`${chartPair} ${chartTf} | ${timeFmt(r.t)} | Open ${fmt(r.o,priceDigits)} | High ${fmt(r.h,priceDigits)} | Low ${fmt(r.l,priceDigits)} | Close ${fmt(r.c,priceDigits)}`};
+ chart.addEventListener('pointermove',inspect);chart.addEventListener('pointerdown',inspect);
+ $('chartTip').textContent=`${chartPair} ${chartTf} • last closed candle: ${timeFmt(chartRows.at(-1).t)} • tap a candle for OHLC`;
+ $('tfM1').classList.toggle('on',chartTf==='M1');$('tfM5').classList.toggle('on',chartTf==='M5');$('tfM1').setAttribute('aria-pressed',String(chartTf==='M1'));$('tfM5').setAttribute('aria-pressed',String(chartTf==='M5'));
+}
 function snapshot(pair){const src=barsByPair.get(pair),error=errorsByPair.get(pair);if(!src)return{pair,status:'NO_DATA',reason:error||'Start the data feed, or load an M1 CSV for this pair.'};const now=Date.now(),cutoff=Math.floor(now/60000)*60000;const rows=src.filter(r=>r.t<cutoff);if(rows.length<MIN_BARS)return{pair,status:'NO_DATA',reason:`Only ${rows.length} closed M1 candles available; at least ${MIN_BARS} required.`};const cl=rows.map(x=>x.c),fast=ema(cl,9),slow=ema(cl,21),macro=macroData(rows,m5ByPair.get(pair)),rsis=rsi(cl),calc=atrAdx(rows),last=rows.at(-1),i=rows.length-1,age=now-(last.t+60000);
- if(macro[i]==null||calc.adx[i]==null)return{pair,status:'NO_DATA',reason:'Insufficient fully closed M5 candles for EMA 200.'};let found=null;for(let k=i;k>=1&&last.t-rows[k].t<=16*60000;k--){if(now-(rows[k].t+60000)>FRESH_MS)break;const m=macro[k],rv=rsis[k],av=calc.adx[k];if([m,rv,av,fast[k],fast[k-1],slow[k],slow[k-1]].some(v=>v==null))continue;const above=fast[k-1]<=slow[k-1]&&fast[k]>slow[k],below=fast[k-1]>=slow[k-1]&&fast[k]<slow[k],lng=rows[k].c>m&&above&&rv>50&&rv<70&&av>20,shrt=rows[k].c<m&&below&&rv<50&&rv>30&&av>20;if(lng||shrt){found={type:lng?'LONG_PATTERN':'SHORT_PATTERN',time:rows[k].t};break}}
+ if(macro[i]==null||calc.adx[i]==null)return{pair,status:'NO_DATA',reason:'Insufficient fully closed M5 candles for EMA 200.'};let found=null;for(let k=i;k>=1&&last.t-rows[k].t<=16*60000;k--){if(now-(rows[k].t+60000)>FRESH_MS)break;const m=macro[k],rv=rsis[k],av=calc.adx[k];if([m,rv,av,fast[k],fast[k-1],slow[k],slow[k-1]].some(v=>v==null))continue;const contiguous=rows[k].t-rows[k-1].t===60000,above=contiguous&&fast[k-1]<=slow[k-1]&&fast[k]>slow[k],below=contiguous&&fast[k-1]>=slow[k-1]&&fast[k]<slow[k],lng=rows[k].c>m&&above&&rv>50&&rv<70&&av>20,shrt=rows[k].c<m&&below&&rv<50&&rv>30&&av>20;if(lng||shrt){found={type:lng?'LONG_PATTERN':'SHORT_PATTERN',time:rows[k].t};break}}
  const lastM5=m5ByPair.get(pair)?.at(-1),m5Age=lastM5?now-(lastM5.t+300000):0;const fresh=age>=-60000&&age<=FRESH_MS&&(!lastM5||(m5Age>=-60000&&m5Age<=FRESH_MS)),status=!fresh?'HISTORICAL':found?found.type:'WAIT';return{pair,status,close:last.c,ema9:fast[i],ema21:slow[i],macro:macro[i],rsi:rsis[i],adx:calc.adx[i],atr:calc.atr[i],time:last.t,eventTime:fresh?found?.time:null,spark:cl.slice(-60),reason:error?'Feed request error: '+error:!fresh?'M1 or M5 data are old. Check market hours or the feed.':found?`A ${found.type==='LONG_PATTERN'?'bullish':'bearish'} historical indicator pattern occurred at ${timeFmt(found.time)}. Not an order recommendation.`:'No qualifying EMA 9/21 crossover with RSI, ADX and M5 filter in the last 16 minutes.'}}
 function spark(xs){if(!xs?.length)return'';const lo=Math.min(...xs),hi=Math.max(...xs),span=hi-lo||1,den=Math.max(xs.length-1,1),d=xs.map((v,i)=>`${i?'L':'M'}${(i/den*380).toFixed(2)},${(54-(v-lo)/span*44).toFixed(2)}`).join(' ');return`<svg viewBox="0 0 380 65" preserveAspectRatio="none" width="100%" height="65" role="img" aria-label="Recent M1 closes"><path d="${d}" fill="none" stroke="#99b7ff" stroke-width="2.4" stroke-linejoin="round"/></svg>`}
-function card(s){const digits=s.pair==='USDJPY'?3:5,lbl={NO_DATA:'NO DATA',HISTORICAL:'OLD DATA',LONG_PATTERN:'BULLISH PATTERN',SHORT_PATTERN:'BEARISH PATTERN',WAIT:'NO PATTERN'}[s.status]||'—',cls=s.status==='LONG_PATTERN'?'long':s.status==='SHORT_PATTERN'?'short':s.status==='HISTORICAL'?'historical':'';return`<article class="card"><div class="chead"><div><div class="pair">${s.pair.slice(0,3)} / ${s.pair.slice(3)}</div><div class="sub">${s.time?'Last closed M1: '+timeFmt(s.time):'Awaiting market data'}</div></div><span class="state ${cls}">${lbl}</span></div><div class="spark">${spark(s.spark)}</div><div class="numbers"><div class="number"><span>Close</span><b>${fmt(s.close,digits)}</b></div><div class="number"><span>EMA 9 / 21</span><b>${fmt(s.ema9,digits)} / ${fmt(s.ema21,digits)}</b></div><div class="number"><span>M5 EMA 200</span><b>${fmt(s.macro,digits)}</b></div><div class="number"><span>RSI 14</span><b>${fmt(s.rsi)}</b></div><div class="number"><span>ADX 14</span><b>${fmt(s.adx)}</b></div><div class="number"><span>ATR 14</span><b>${fmt(s.atr,digits)}</b></div></div><p class="reason">${safe(s.reason)}</p></article>`}
+function card(s){const digits=s.pair==='USDJPY'?3:5,lbl={NO_DATA:'NO DATA',HISTORICAL:'OLD DATA',LONG_PATTERN:'BULLISH PATTERN',SHORT_PATTERN:'BEARISH PATTERN',WAIT:'NO PATTERN'}[s.status]||'—',cls=s.status==='LONG_PATTERN'?'long':s.status==='SHORT_PATTERN'?'short':s.status==='HISTORICAL'?'historical':'';return`<article class="card"><div class="chead"><div><div class="pair">${s.pair.slice(0,3)} / ${s.pair.slice(3)}</div><div class="sub">${s.time?'Last closed M1: '+timeFmt(s.time):'Awaiting market data'}</div></div><span class="state ${cls}">${lbl}</span></div><div class="spark">${spark(s.spark)}</div><div class="numbers"><div class="number"><span>Close</span><b>${fmt(s.close,digits)}</b></div><div class="number"><span>EMA 9 / 21</span><b>${fmt(s.ema9,digits)} / ${fmt(s.ema21,digits)}</b></div><div class="number"><span>M5 EMA 200</span><b>${fmt(s.macro,digits)}</b></div><div class="number"><span>RSI 14</span><b>${fmt(s.rsi)}</b></div><div class="number"><span>ADX 14</span><b>${fmt(s.adx)}</b></div><div class="number"><span>ATR 14</span><b>${fmt(s.atr,digits)}</b></div></div><p class="reason">${safe(s.reason)}</p><button type="button" class="chartjump" data-chart-pair="${s.pair}">View candlestick chart ↗</button></article>`}
 function render(){const d=PAIRS.map(snapshot);$('loaded').textContent=barsByPair.size;$('fresh').textContent=d.filter(x=>['WAIT','LONG_PATTERN','SHORT_PATTERN'].includes(x.status)).length;$('setups').textContent=d.filter(x=>['LONG_PATTERN','SHORT_PATTERN'].includes(x.status)).length;const selected=d.filter(x=>activeFilter==='all'||(activeFilter==='setups'&&['LONG_PATTERN','SHORT_PATTERN'].includes(x.status))||(activeFilter==='missing'&&['NO_DATA','HISTORICAL'].includes(x.status)));$('cards').innerHTML=selected.length?selected.map(card).join(''):'<div class="empty">Nothing matches this filter.</div>';const good=d.some(x=>['WAIT','LONG_PATTERN','SHORT_PATTERN'].includes(x.status));$('topPill').textContent=busy?'UPDATING DATA':good?'RECENT DATA / RESEARCH':'NO CURRENT DATA'}
 async function requestPair(pair){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),20000);try{
  const fetchBars=async(interval,limit)=>{const url=`https://biquote.io/api/${pair}/ohlc?interval=${interval}&limit=${limit}`;const r=await fetch(url,{cache:'no-store',signal:controller.signal});let payload;try{payload=await r.json()}catch{throw Error('Provider returned a non-JSON reply')}if(!r.ok)throw Error(payload?.message||`HTTP ${r.status}`);return parseBiquote(payload)};
  const [m1,m5]=await Promise.all([fetchBars('1m',1000),fetchBars('5m',350)]);
  if(m1.length<MIN_BARS)throw Error(`Only ${m1.length} closed M1 bars received`);
  if(m5.length<200)throw Error(`Only ${m5.length} closed M5 bars received (need at least 200)`);
- barsByPair.set(pair,m1);m5ByPair.set(pair,m5);errorsByPair.delete(pair);return true;
+ barsByPair.set(pair,m1);m5ByPair.set(pair,m5);pairSources.set(pair,'feed');errorsByPair.delete(pair);archivePatterns(pair);return true;
  }catch(e){errorsByPair.set(pair,e.name==='AbortError'?'Provider request timed out':String(e.message||'Request failed').slice(0,180));return false}finally{clearTimeout(timeout)}}
 function status(){const now=Date.now();$('feedStatus').textContent=busy?'Requesting five pairs…':running?'Auto-scan active':'Stopped';$('lastRequest').textContent=lastStarted?timeFmt(lastStarted):'Never';$('nextScan').textContent=running&&nextAt?(now>=nextAt?'Due now':Math.ceil((nextAt-now)/60000)+' min'):'—';$('start').disabled=busy||running;$('stop').disabled=!running}
-async function scanAll(){if(!running||busy)return;busy=true;lastStarted=Date.now();nextAt=lastStarted+WAIT_MS;status();setMessage('msg','Loading M1 and M5 candles from the public market-data feed.');const results=await Promise.all(PAIRS.map(p=>requestPair(p)));busy=false;const n=results.filter(Boolean).length;setMessage('msg',n?`Updated ${n}/5 markets. ${5-n} could not be refreshed. See cards for data times.`:'Could not load data. The external feed may be unavailable, rate limited, or blocking access. CSV mode still works.');render();status()}
+async function scanAll(){if(!running||busy)return;busy=true;lastStarted=Date.now();nextAt=lastStarted+WAIT_MS;status();setMessage('msg','Loading M1 and M5 candles from the public market-data feed.');const results=await Promise.all(PAIRS.map(p=>requestPair(p)));busy=false;const n=results.filter(Boolean).length;setMessage('msg',n?`Updated ${n}/5 markets. ${5-n} could not be refreshed. See cards for data times.`:'Could not load data. The external feed may be unavailable, rate limited, or blocking access. CSV mode still works.');render();renderChart();status()}
 function start(){if(running)return;running=true;timer=setInterval(()=>{if(!running)return;if(Date.now()>=nextAt&&!busy)scanAll();status();render()},30000);if(lastStarted&&Date.now()-lastStarted<WAIT_MS){nextAt=lastStarted+WAIT_MS;setMessage('msg','Scanner resumed using the existing data. Next request occurs after the 5-minute interval.');status();render()}else scanAll()}
 function stop(){running=false;clearInterval(timer);timer=null;nextAt=0;status();setMessage('msg','Automatic scanning stopped. Existing results remain visible until the page closes.')}
 function tab(s){source=s;const feed=s==='feed';$('feedPanel').classList.toggle('hidden',!feed);$('csvPanel').classList.toggle('hidden',feed);$('tabFeed').classList.toggle('on',feed);$('tabCsv').classList.toggle('on',!feed);$('tabFeed').setAttribute('aria-selected',String(feed));$('tabCsv').setAttribute('aria-selected',String(!feed))}
 $('tabFeed').addEventListener('click',()=>tab('feed'));$('tabCsv').addEventListener('click',()=>tab('csv'));$('start').addEventListener('click',start);$('stop').addEventListener('click',stop);
-$('load').addEventListener('click',async()=>{const file=$('file').files?.[0],pair=$('symbol').value;if(!file){setMessage('csvMsg','Please choose a CSV file.');return}try{const bars=parseCsv(await file.text());if(bars.length<1100)throw Error(`Only ${bars.length} M1 bars. For CSV without a separate M5 feed, you need at least 1,100.`);barsByPair.set(pair,bars);m5ByPair.delete(pair);errorsByPair.delete(pair);setMessage('csvMsg',`Loaded ${bars.length} M1 candles for ${pair}; last candle ${timeFmt(bars.at(-1).t)}.`);render()}catch(e){setMessage('csvMsg','CSV problem: '+e.message)}});
+$('load').addEventListener('click',async()=>{const file=$('file').files?.[0],pair=$('symbol').value;if(!file){setMessage('csvMsg','Please choose a CSV file.');return}try{const bars=parseCsv(await file.text());if(bars.length<1100)throw Error(`Only ${bars.length} M1 bars. For CSV without a separate M5 feed, you need at least 1,100.`);barsByPair.set(pair,bars);m5ByPair.delete(pair);pairSources.set(pair,'csv');errorsByPair.delete(pair);archivePatterns(pair);setMessage('csvMsg',`Loaded ${bars.length} M1 candles for ${pair}; last candle ${timeFmt(bars.at(-1).t)}.`);render();renderChart()}catch(e){setMessage('csvMsg','CSV problem: '+e.message)}});
 document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{activeFilter=b.dataset.filter;document.querySelectorAll('.filter').forEach(x=>x.classList.toggle('on',b===x));render()}));
-render();status();setInterval(()=>{render();status()},30000);
+// Chart, data series navigation and persistent history controls.
+$('chartPair').addEventListener('change',e=>{chartPair=e.target.value;chartRight=null;renderChart()});
+for(const tf of ['M1','M5'])$('tf'+tf).addEventListener('click',()=>{chartTf=tf;chartRight=null;renderChart()});
+$('zoomIn').addEventListener('click',()=>{chartBarsShown=Math.max(20,Math.round(chartBarsShown*.65));renderChart()});
+$('zoomOut').addEventListener('click',()=>{chartBarsShown=Math.min(250,Math.round(chartBarsShown*1.5));renderChart()});
+$('chartPrev').addEventListener('click',()=>{chartRight=(chartRight??chartRows.length)-Math.max(5,Math.round(chartBarsShown*.65));renderChart()});
+$('chartNext').addEventListener('click',()=>{chartRight=(chartRight??chartRows.length)+Math.max(5,Math.round(chartBarsShown*.65));renderChart()});
+$('chartLatest').addEventListener('click',()=>{chartRight=null;renderChart()});
+$('chartScroll').addEventListener('input',e=>{chartRight=Number(e.target.value);renderChart()});
+$('cards').addEventListener('click',e=>{const btn=e.target.closest('[data-chart-pair]');if(!btn)return;chartPair=btn.dataset.chartPair;$('chartPair').value=chartPair;chartRight=null;renderChart();$('chartSection').scrollIntoView({behavior:'smooth',block:'start'})});
+$('historyPair').addEventListener('change',e=>{historyPair=e.target.value;renderHistory()});
+$('clearHistory').addEventListener('click',()=>{if(!window.confirm('Clear the saved local indicator history?'))return;patternHistory=[];try{localStorage.removeItem(HISTORY_KEY)}catch{}renderHistory();renderChart()});
+renderHistory();render();renderChart();status();window.addEventListener('resize',()=>renderChart());setInterval(()=>{render();status()},30000);
 </script>
 </body></html>
