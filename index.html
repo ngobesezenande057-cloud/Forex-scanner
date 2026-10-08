@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://biquote.io; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>Aperture Markets V5 | Paper Setup Scanner</title>
+<title>Aperture Markets V6 | Scan Now Research</title>
 <style>
 :root{color-scheme:dark;--bg:#070e1a;--panel:#102037;--panel2:#13273f;--border:#293d55;--text:#eef4ff;--muted:#9eafc7;--aqua:#54dec3;--red:#ff8798;--blue:#a1b9ff;--amber:#edca8e}
 *{box-sizing:border-box}body{margin:0;color:var(--text);font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 60% -12%,#253e63 0,#0b1729 35%,var(--bg) 75%)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--aqua);outline-offset:2px}
@@ -34,6 +34,8 @@
 /* Closed-candle paper setup board; price levels are indicative, never executable */
 .setup-section{margin:20px 0 31px}.setup-intro{color:var(--muted);font-size:12px;margin:5px 0 15px;line-height:1.55}.setup-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.setup-card{padding:17px;background:linear-gradient(160deg,#162940,#0b192b);border:1px solid #304b62;border-radius:14px;min-width:0}.setup-top{display:flex;gap:8px;justify-content:space-between;align-items:center}.setup-title{font-weight:850;font-size:17px}.setup-status{border-radius:7px;font-weight:900;letter-spacing:.07em;padding:5px 10px;font-size:12px;background:#25384c;border:1px solid #66829e;color:#d0e0f1}.setup-status.buy{background:#123e38;border-color:#398c77;color:#8ef5d9}.setup-status.sell{background:#402234;border-color:#a54f69;color:#ffb8c5}.setup-meta{font-size:11px;color:#aec2d8;margin-top:7px}.setup-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:14px 0 8px}.setup-level{background:#0a192a;border:1px solid #26425b;border-radius:9px;min-width:0;padding:11px 8px}.setup-level small{display:block;font-size:10px;color:#a9bed7;margin-bottom:4px}.setup-level strong{display:block;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;font-size:16px}.setup-level .stop{color:#ff9caf}.setup-level .target{color:#82e9d0}.setup-reason{font-size:11px;line-height:1.5;color:#bbcee4;margin:9px 0 0}.setup-legend{font-size:12px;line-height:1.6;color:var(--muted);margin:12px 0 0}.setup-legend strong{color:#d5e7fa}
 @media(max-width:740px){.setup-board{grid-template-columns:1fr}.setup-card{padding:14px}.setup-level strong{font-size:15px}}
+/* On-demand market analysis; no trade execution or authenticated broker data */
+.scan-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0}.scan-now{font-size:15px;padding:13px 21px;min-height:50px;background:#28796d;border-color:#54b8a7}.scan-result{font-size:12px;color:#bed2e5;line-height:1.6;flex:1;min-width:220px}.bias-info{font-size:11px;margin-top:10px;color:#b6d1e9;padding:9px 10px;background:#122a42;border-radius:7px}.bias-info b{color:#e2f5ff}.indicator-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}.indicator-checks span{font-size:11px;color:#c5d5e8;background:#0c192a;border:1px solid #263f57;padding:7px 8px;border-radius:7px}.indicator-checks .yes{border-color:#397d70;color:#a3e9dc}.indicator-checks .no{border-color:#64465c;color:#dbb6c0}
 /* Quote watch: never confuse a received tick with a verified, actionable signal */
 .live-watch{margin:18px 0 24px}.live-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:9px}.live-heading h2{font-size:21px;margin:0}.live-heading p,.quote-meta{font-size:12px;color:var(--muted);margin:2px 0}.quote-meta{margin-bottom:12px}.quote-meta b{color:#d9e9fb}.quote-board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.quote-card{min-width:0;padding:15px;border-radius:13px;background:linear-gradient(135deg,#142a44,#0d1b2d);border:1px solid var(--border)}.quote-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:4px}.quote-pair{font-size:15px;font-weight:850}.quote-mark{border-radius:6px;padding:3px 6px;font-size:9px;font-weight:850;white-space:nowrap;border:1px solid #526881;color:#b9cee8}.quote-mark.fresh{border-color:#468f87;color:#84e8d2}.quote-mark.closed{border-color:#806d4c;color:#f1d49f}.quote-mark.old{border-color:#895462;color:#ffc0cc}.quote-mid{font-size:24px;font-weight:850;font-variant-numeric:tabular-nums;margin:13px 0 10px;letter-spacing:-.025em}.quote-cols{display:grid;grid-template-columns:1fr 1fr;gap:7px}.quote-cols small{display:block;color:var(--muted);font-size:10px}.quote-cols b{display:block;font-variant-numeric:tabular-nums;font-size:12px;overflow-wrap:anywhere}.quote-foot{font-size:10px;color:#a9c0dc;margin-top:10px}.quote-info{color:var(--muted);font-size:11px;line-height:1.4;margin-top:8px}.live-head-state{font-size:10px;font-weight:800;letter-spacing:.05em;border:1px solid #526881;border-radius:8px;padding:6px 9px;color:#b8cce8}.live-head-state.fresh{color:#9df8df;border-color:#418b7e}.live-head-state.old{color:#f4b1c0;border-color:#895462}
 @media(max-width:940px){.quote-board{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:740px){.quote-board{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.quote-card{padding:12px}.quote-mid{font-size:21px}.quote-pair{font-size:14px}.quote-cols b{font-size:11px}.quote-meta-divider{display:none}}
@@ -60,10 +62,11 @@
   <div id="quoteBoard" class="quote-board" aria-label="Seven market quote cards"></div>
 </section>
 <section class="setup-section" id="setupSection" aria-label="Paper BUY WAIT SELL setups">
-  <div class="studyhead"><div><h2>BUY / WAIT / SELL setup scanner</h2><p class="tagline">Newly closed M1 candles · M5 trend confirmation · paper study only</p></div><span class="pill" id="setupSummary">AWAITING DATA</span></div>
-  <div class="setup-intro">A BUY or SELL label requires a <strong>new EMA 9/21 crossover on the latest closed M1 candle</strong>, with M5 EMA 200, RSI 14 and ADX 14 filters all passing. No new qualifying crossover, stopped watch, closed market, or old data means <strong>WAIT</strong>. This is not a recommendation to place an order.</div>
+  <div class="studyhead"><div><h2>Chart scanner · BUY / WAIT / SELL</h2><p class="tagline">Research labels generated from seven markets' newest completed M1/M5 candles</p></div><span class="pill" id="setupSummary">AWAITING DATA</span></div>
+  <div class="scan-actions"><button type="button" class="btn scan-now" id="scanNow">◎ Scan charts now</button><div class="scan-result" id="scanResult" role="status" aria-live="polite">Tap to refresh market quotes and M1/M5 candles and review each market's technical conditions.</div></div>
+  <div class="setup-intro">A <strong>paper BUY/SELL setup</strong> requires a new EMA 9/21 crossover on the newest completed M1 candle, with M5 EMA 200, RSI 14 and ADX 14 filters all passing. The panel also explains the current <strong>bullish / bearish / mixed indicator bias</strong>, even when the result is WAIT. Missing candles, outdated quotes or failed checks always mean WAIT. It is a rule-based study, not a predictive AI or an instruction to trade.</div>
   <div class="setup-board" id="setupBoard" aria-live="off"><div class="empty">Waiting for fresh quotes and completed candles.</div></div>
-  <p class="setup-legend"><strong>Hypothetical levels:</strong> Entry reference = most recent completed M1 close; Stop = 1 × ATR(14) away; Target = 1.5 × ATR(14) away in the setup direction. Levels are shown only for a newly qualifying candle and expire as the next candle becomes available. They are <strong>not</strong> live entry quotes, guaranteed fills, broker orders or suggested amounts to invest. Spread, slippage, commissions and platform-specific minimum stop distances are excluded.</p>
+  <p class="setup-legend"><strong>Hypothetical levels:</strong> Paper entry reference = the most recently reported public ask for a bullish setup or bid for a bearish setup; Stop = 1 × ATR(14) away; Target = 1.5 × ATR(14) away in the setup direction. Levels appear only when a newly qualifying candle and recent bid/ask quote are both available. Refresh them with Scan charts now; they expire as new candles arrive. They are <strong>not</strong> live entry quotes, guaranteed fills, broker orders or suggested amounts to invest. The quote spread is observable but slippage, commissions and venue-specific minimum stop distances are not modeled. The website cannot identify JustMarkets executable entry prices.</p>
 </section>
 <section class="overview"><div class="metric"><span>Tracked markets</span><b>7</b></div><div class="metric"><span>Markets with candles</span><b id="loaded">0</b></div><div class="metric"><span>Fresh candle sets</span><b id="fresh">0</b></div><div class="metric"><span>Recent patterns</span><b id="setups">0</b></div></section>
 
@@ -107,7 +110,7 @@
 const PAIRS=['EURUSD','GBPUSD','USDJPY','AUDUSD','USDCAD','XAUUSD','BTCUSD'];
 const WAIT_MS=60*1000, QUOTE_MS=10*1000, FRESH_MS=3*60*1000, M5_FRESH_MS=11*60*1000, MIN_BARS=100;
 const barsByPair=new Map(), m5ByPair=new Map(), errorsByPair=new Map(), pairSources=new Map();
-let source='feed',activeFilter='all',running=false,busy=false,timer=null,lastStarted=0,nextAt=0;
+let source='feed',activeFilter='all',running=false,busy=false,timer=null,lastStarted=0,nextAt=0,manualBusy=false;
 const quotesByPair=new Map();
 let quotesBusy=false,quotesChecked=0,nextQuoteAt=0,quoteError='',successfulQuotes=0;
 let btPair='EURUSD';let chartPair='EURUSD',chartTf='M1',chartBarsShown=60,chartRight=null,chartVisible=[],chartRows=[],historyPair='all';
@@ -207,47 +210,62 @@ function snapshot(pair){const src=barsByPair.get(pair),error=errorsByPair.get(pa
 // recycle a historical crossover from earlier in the fifteen-minute hold window.
 // This function is intentionally read-only: no broker/API order requests.
 function paperDecision(pair,now=Date.now()){
- const wait=(why,last=null)=>({pair,action:'WAIT',reason:why,time:last?.t??null});
- if(!running)return wait('Scanner paused. Start live watch to update closed candles.');
- if(pairSources.get(pair)!=='feed')return wait('Live candle feed is not available (CSV is historical research only).');
- const qstate=quoteState(quotesByPair.get(pair),now);
+ const wait=(why,last=null,detail=null)=>({pair,action:'WAIT',reason:why,time:last?.t??null,...(detail||{})});
+ if(!running)return wait('Monitor is paused. Press Scan charts now to refresh.');
+ if(pairSources.get(pair)!=='feed')return wait('Only historical CSV candles are loaded; current market evaluation needs a live candle feed.');
+ const q=quotesByPair.get(pair),qstate=quoteState(q,now);
  if(qstate.css!=='fresh')return wait('No recent open-market reference quote ('+qstate.label+').');
  const calc=calculatePair(pair);
- if(!calc)return wait('Waiting for enough M1 candles to calculate indicators.');
+ if(!calc)return wait('Waiting for enough completed candles to calculate all indicators.');
  const {rows,fast,slow,macro,rsis,adx,atr}=calc;
  const i=rows.length-1,last=rows[i],prev=rows[i-1];
  if(!prev||last.t-prev.t!==60000)return wait('Missing consecutive M1 candles.',last);
  const lastClosed=last.t+60000;
- if(lastClosed>now||now-lastClosed>110000)return wait('Last completed M1 candle is old. Awaiting an update.',last);
+ if(lastClosed>now||now-lastClosed>110000)return wait('Last completed M1 candle is too old. Awaiting updated data.',last);
  const m5=m5ByPair.get(pair),lastM5=m5?.at(-1);
  if(!lastM5||lastM5.t+300000>now||now-(lastM5.t+300000)>M5_FRESH_MS)return wait('Recent fully closed M5 trend candle is unavailable.',last);
  const values=[fast[i],fast[i-1],slow[i],slow[i-1],macro[i],rsis[i],adx[i],atr[i]];
  if(values.some(v=>v==null||!Number.isFinite(v))||!(atr[i]>0))return wait('Indicators are warming up or ATR is unavailable.',last);
- const up=fast[i-1]<=slow[i-1]&&fast[i]>slow[i];
- const down=fast[i-1]>=slow[i-1]&&fast[i]<slow[i];
- const buy=last.c>macro[i]&&up&&rsis[i]>50&&rsis[i]<70&&adx[i]>20;
- const sell=last.c<macro[i]&&down&&rsis[i]<50&&rsis[i]>30&&adx[i]>20;
+ const up=fast[i-1]<=slow[i-1]&&fast[i]>slow[i],down=fast[i-1]>=slow[i-1]&&fast[i]<slow[i];
+ const bullish=last.c>macro[i],bearish=last.c<macro[i],strong=adx[i]>20;
+ const rsiBull=rsis[i]>50&&rsis[i]<70,rsiBear=rsis[i]<50&&rsis[i]>30;
+ const trendBull=fast[i]>slow[i],trendBear=fast[i]<slow[i];
+ const bias=bullish&&trendBull&&rsis[i]>50?'BULLISH':bearish&&trendBear&&rsis[i]<50?'BEARISH':'MIXED';
+ const checks={trend:bullish?'Above M5 EMA200':bearish?'Below M5 EMA200':'At M5 EMA200',
+  ema:trendBull?'EMA9 above EMA21':trendBear?'EMA9 below EMA21':'EMAs equal',
+  rsi:'RSI '+fmt(rsis[i])+' ('+(rsiBull?'bull range':rsiBear?'bear range':'out of range')+')',
+  adx:'ADX '+fmt(adx[i])+(strong?' > 20':' ≤ 20'),
+  cross:up?'Fresh up crossover':down?'Fresh down crossover':'No fresh crossover'};
+ const detail={bias,checks,rsi:rsis[i],adx:adx[i],atr:atr[i]};
+ const buy=bullish&&up&&rsiBull&&strong,sell=bearish&&down&&rsiBear&&strong;
  if(!buy&&!sell){
-  const reason=adx[i]<=20?'ADX 14 is '+fmt(adx[i])+' (requires > 20).':
-   !up&&!down?'No EMA 9 / EMA 21 cross on the newest completed M1 candle.':
-   'An EMA cross occurred, but the M5 trend or RSI filters did not all pass.';
-  return wait(reason,last);
+  const reason=!strong?'ADX '+fmt(adx[i])+' is below the required 20 threshold.':
+   !up&&!down?'No fresh EMA9/21 crossover on the latest completed M1 candle.':
+   'EMA crossover found, but the M5 trend or RSI conditions do not all match.';
+  return wait(reason,last,detail);
  }
- const direction=buy?1:-1,entry=last.c,distance=atr[i];
+ const direction=buy?1:-1;
+ const bid=q?.bid,ask=q?.ask;
+ if(!Number.isFinite(bid)||!Number.isFinite(ask)||bid<=0||ask<=bid)return wait('Cannot calculate a paper entry: recent bid and ask are unavailable or invalid.',last,detail);
+ const spread=ask-bid,entry=buy?ask:bid,distance=atr[i];
+ if(spread>distance*.35)return wait('Spread is large relative to ATR; paper setup withheld.',last,detail);
+ if(Math.abs(entry-last.c)>distance*2)return wait('Public quote differs substantially from the last candle close; paper setup withheld.',last,detail);
  const stop=entry-direction*distance,target=entry+direction*1.5*distance;
- if(stop<=0||!Number.isFinite(target))return wait('ATR calculation could not produce valid hypothetical levels.',last);
- return{pair,action:buy?'BUY':'SELL',time:last.t,entry,stop,target,atr:distance,
-  rsi:rsis[i],adx:adx[i],reason:'All six filters match on the latest closed M1 candle. Levels refer to its close, NOT the currently displayed bid/ask quote.'};
+ if(stop<=0||!Number.isFinite(target))return wait('ATR could not produce positive hypothetical levels.',last,detail);
+ return{pair,action:buy?'BUY':'SELL',time:last.t,entry,stop,target,spread,...detail,
+  reason:'All selected indicator filters agree on the last completed M1 candle. The entry is a public '+(buy?'ask':'bid')+' reference, not an order price; values can change before a broker fill.'};
 }
 function renderPaperSetups(){
  const now=Date.now(),views=PAIRS.map(p=>paperDecision(p,now)),active=views.filter(v=>v.action!=='WAIT');
- $('setupSummary').textContent=active.length?`${active.length} NEW PAPER ${active.length===1?'SETUP':'SETUPS'}`:'7 MARKETS · WAIT';
+ $('setupSummary').textContent=active.length?`${active.length} PAPER ${active.length===1?'SETUP':'SETUPS'}`:'7 MARKETS · WAIT';
  $('setupBoard').innerHTML=views.map(v=>{
   const d=digitsFor(v.pair),buy=v.action==='BUY',actionClass=buy?'buy':v.action==='SELL'?'sell':'';
-  const levels=v.action==='WAIT'?'':`<div class="setup-levels"><div class="setup-level"><small>Reference close</small><strong>${fmt(v.entry,d)}</strong></div><div class="setup-level"><small>Hypothetical stop</small><strong class="stop">${fmt(v.stop,d)}</strong></div><div class="setup-level"><small>Hypothetical target</small><strong class="target">${fmt(v.target,d)}</strong></div></div><div class="setup-meta">1 × ATR = ${fmt(v.atr,d)} · Target/stop = 1.5:1 · RSI ${fmt(v.rsi)} · ADX ${fmt(v.adx)}</div>`;
-  return `<article class="setup-card"><div class="setup-top"><span class="setup-title">${pairLabel(v.pair)}</span><span class="setup-status ${actionClass}">${v.action}</span></div><div class="setup-meta">${v.time?'Last closed M1: '+safe(timeFmt(v.time+60000)):'No qualifying current candle'}</div>${levels}<p class="setup-reason">${safe(v.reason)}</p></article>`;
+  const levels=v.action==='WAIT'?'':`<div class="setup-levels"><div class="setup-level"><small>Paper entry (${buy?'ask':'bid'})</small><strong>${fmt(v.entry,d)}</strong></div><div class="setup-level"><small>Hypothetical stop</small><strong class="stop">${fmt(v.stop,d)}</strong></div><div class="setup-level"><small>Hypothetical target</small><strong class="target">${fmt(v.target,d)}</strong></div></div><div class="setup-meta">ATR(14) ${fmt(v.atr,d)} · Reference spread ${fmt(v.spread,d)} · 1.5R target</div>`;
+  const detail=v.checks?`<div class="bias-info"><b>Indicator bias: ${v.bias}</b> · ${safe(v.checks.ema)} · ${safe(v.checks.trend)}</div><div class="indicator-checks"><span>${safe(v.checks.cross)}</span><span>${safe(v.checks.rsi)}</span><span>${safe(v.checks.adx)}</span><span>ATR ${fmt(v.atr,d)}</span></div>`:'';
+  return `<article class="setup-card"><div class="setup-top"><span class="setup-title">${pairLabel(v.pair)}</span><span class="setup-status ${actionClass}">${v.action}</span></div><div class="setup-meta">${v.time?'M1 candle closed: '+safe(timeFmt(v.time+60000)):'No qualifying current candle'}</div>${levels}${detail}<p class="setup-reason">${safe(v.reason)}</p></article>`;
  }).join('');
 }
+
 function spark(xs){if(!xs?.length)return'';const lo=Math.min(...xs),hi=Math.max(...xs),span=hi-lo||1,den=Math.max(xs.length-1,1),d=xs.map((v,i)=>`${i?'L':'M'}${(i/den*380).toFixed(2)},${(54-(v-lo)/span*44).toFixed(2)}`).join(' ');return`<svg viewBox="0 0 380 65" preserveAspectRatio="none" width="100%" height="65" role="img" aria-label="Recent M1 closes"><path d="${d}" fill="none" stroke="#99b7ff" stroke-width="2.4" stroke-linejoin="round"/></svg>`}
 function card(s){const digits=digitsFor(s.pair),lbl={NO_DATA:'NO DATA',HISTORICAL:'OLD DATA',LONG_PATTERN:'BULLISH PATTERN',SHORT_PATTERN:'BEARISH PATTERN',WAIT:'NO PATTERN'}[s.status]||'—',cls=s.status==='LONG_PATTERN'?'long':s.status==='SHORT_PATTERN'?'short':s.status==='HISTORICAL'?'historical':'';return`<article class="card"><div class="chead"><div><div class="pair">${pairLabel(s.pair)}</div><div class="sub">${s.time?'Last closed M1: '+timeFmt(s.time):'Awaiting market data'}</div></div><span class="state ${cls}">${lbl}</span></div><div class="spark">${spark(s.spark)}</div><div class="numbers"><div class="number"><span>Close</span><b>${fmt(s.close,digits)}</b></div><div class="number"><span>EMA 9 / 21</span><b>${fmt(s.ema9,digits)} / ${fmt(s.ema21,digits)}</b></div><div class="number"><span>M5 EMA 200</span><b>${fmt(s.macro,digits)}</b></div><div class="number"><span>RSI 14</span><b>${fmt(s.rsi)}</b></div><div class="number"><span>ADX 14</span><b>${fmt(s.adx)}</b></div><div class="number"><span>ATR 14</span><b>${fmt(s.atr,digits)}</b></div></div><p class="reason">${safe(s.reason)}</p><button type="button" class="chartjump" data-chart-pair="${s.pair}">View candlestick chart ↗</button></article>`}
 function render(){const d=PAIRS.map(snapshot);$('loaded').textContent=barsByPair.size;$('fresh').textContent=d.filter(x=>['WAIT','LONG_PATTERN','SHORT_PATTERN'].includes(x.status)).length;$('setups').textContent=d.filter(x=>['LONG_PATTERN','SHORT_PATTERN'].includes(x.status)).length;const selected=d.filter(x=>activeFilter==='all'||(activeFilter==='setups'&&['LONG_PATTERN','SHORT_PATTERN'].includes(x.status))||(activeFilter==='missing'&&['NO_DATA','HISTORICAL'].includes(x.status)));$('cards').innerHTML=selected.length?selected.map(card).join(''):'<div class="empty">Nothing matches this filter.</div>';const good=d.some(x=>['WAIT','LONG_PATTERN','SHORT_PATTERN'].includes(x.status));$('topPill').textContent=busy?'UPDATING CANDLES':good?'CLOSED CANDLES CURRENT':'CANDLES OLD / MISSING';renderQuotes();renderPaperSetups()}
@@ -343,13 +361,29 @@ function start(){
  running=true;nextAt=0;nextQuoteAt=0;
  clearInterval(timer);timer=setInterval(watchLoop,3000);
  setMessage('msg','Live watch starting. Waiting for first quotes and closed candles…');
- fetchQuotes();scanAll();status();renderQuotes();
+ const pending=Promise.all([fetchQuotes(),scanAll()]);status();renderQuotes();return pending;
 }
 function stop(){
  running=false;clearInterval(timer);timer=null;nextAt=0;nextQuoteAt=0;
  status();renderQuotes();renderPaperSetups();
  setMessage('msg','Live watch paused. Last available quotes and completed candles remain visible but may be old.');
 }
+async function analyzeNow(){
+ if(manualBusy)return;
+ if(busy||quotesBusy){$('scanResult').textContent='A data refresh is already running. Please wait for it to finish.';return}
+ manualBusy=true;$('scanNow').disabled=true;$('scanNow').textContent='Reading candles…';
+ $('scanResult').textContent='Refreshing the seven markets: bid/ask quotes and completed M1/M5 candles…';
+ try{
+  if(!running)await start();
+  else await Promise.all([fetchQuotes(),scanAll()]);
+  render();renderChart();
+  const decisions=PAIRS.map(x=>paperDecision(x));const total=decisions.filter(x=>x.action!=='WAIT').length;
+  const loaded=decisions.filter(x=>x.time!=null).length;
+  $('scanResult').textContent=`Finished ${timeFmt(Date.now())}: ${loaded}/7 markets have usable latest candles; ${total} new qualifying paper setups, ${7-total} WAIT. Reference levels are estimates, not live broker orders.`;
+ }catch(e){$('scanResult').textContent='Unable to finish scan: '+String(e.message||e).slice(0,120)}
+ finally{manualBusy=false;$('scanNow').disabled=false;$('scanNow').textContent='◎ Scan charts now'}
+}
+$('scanNow').addEventListener('click',analyzeNow);
 function tab(s){source=s;const feed=s==='feed';$('feedPanel').classList.toggle('hidden',!feed);$('csvPanel').classList.toggle('hidden',feed);$('tabFeed').classList.toggle('on',feed);$('tabCsv').classList.toggle('on',!feed);$('tabFeed').setAttribute('aria-selected',String(feed));$('tabCsv').setAttribute('aria-selected',String(!feed))}
 $('tabFeed').addEventListener('click',()=>tab('feed'));$('tabCsv').addEventListener('click',()=>tab('csv'));$('start').addEventListener('click',start);$('stop').addEventListener('click',stop);
 $('load').addEventListener('click',async()=>{const file=$('file').files?.[0],pair=$('symbol').value;if(!file){setMessage('csvMsg','Please choose a CSV file.');return}try{const bars=parseCsv(await file.text());if(bars.length<1100)throw Error(`Only ${bars.length} M1 bars. For CSV without a separate M5 feed, you need at least 1,100.`);barsByPair.set(pair,bars);m5ByPair.delete(pair);pairSources.set(pair,'csv');errorsByPair.delete(pair);archivePatterns(pair);if(btPair===pair)renderBacktest();setMessage('csvMsg',`Loaded ${bars.length} M1 candles for ${pair}; last candle ${timeFmt(bars.at(-1).t)}.`);render();renderChart()}catch(e){setMessage('csvMsg','CSV problem: '+e.message)}});
