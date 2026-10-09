@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://biquote.io; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; object-src 'none'; form-action 'none'">
-<title>Aperture Markets V10 | Live Market Study Scanner</title>
+<title>Aperture Markets V11 | Live Market Study Scanner</title>
 <style>
 :root{color-scheme:dark;--bg:#07111f;--surface:#11223a;--surface2:#0d1a2d;--line:#2a405c;--text:#eff6ff;--muted:#a6b8d1;--mint:#68e2cf;--coral:#ff98aa;--sky:#a3c5ff;--gold:#ecc989}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 62% -15%,#244166 0,#0d1a30 38%,var(--bg) 77%);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:var(--text)}button,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,select:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
@@ -75,32 +75,33 @@
 </style>
 </head>
 <body><main class="container">
-<header class="header"><div><div class="brand">⌁ APERTURE <span>/ MARKETS</span></div><div class="byline">LIVE MARKET SCANNER · V10 · PAPER ONLY</div></div><div class="smallbadge" id="statusPill">CONNECTING…</div></header>
-<section class="hero"><div class="eyebrow">FOREX · GOLD · BITCOIN</div><h1>Markets in motion.<br><span>All in one view.</span></h1><p>Monitor seven instruments, view recent bid/ask quotes and explore M1/M5 trends. Indicators use completed candles, not unfinished price moves. Rule-based BUY / WAIT / SELL <em>paper assessments</em> use completed candles; a separate changing bullish/bearish bias shows developing conditions even when there is no new crossover. No broker connection or order execution. V10 adds clearer candle-timing checks and an optional broker-price comparison.</p></section>
+<header class="header"><div><div class="brand">⌁ APERTURE <span>/ MARKETS</span></div><div class="byline">LIVE MARKET SCANNER · V11 · PAPER ONLY</div></div><div class="smallbadge" id="statusPill">CONNECTING…</div></header>
+<section class="hero"><div class="eyebrow">FOREX · GOLD · BITCOIN</div><h1>Markets in motion.<br><span>All in one view.</span></h1><p>Monitor seven instruments, view recent bid/ask quotes and explore M1/M5 trends. Indicators use completed candles, not unfinished price moves. Rule-based BUY / WAIT / SELL <em>paper assessments</em> use completed candles; a separate changing bullish/bearish bias shows developing conditions even when there is no new crossover. No broker connection or order execution. V11 performs indicator checks behind the scenes, monitors quote quality, and retries short gaps in recent market candles. Only the market assessment and relevant data warnings are displayed.</p></section>
 <section class="panel" aria-label="Scanner controls"><div class="control-grid"><div class="control-copy"><strong>Automatic market watch</strong>Quotes check about every 10 seconds; completed candles update about every 60 seconds while the page stays open. Tap Scan now to refresh both.</div><button type="button" class="btn" id="scan">◎ Scan now</button><button type="button" class="btn secondary" id="pause">Pause watch</button></div><div id="statusMessage" class="status" role="status" aria-live="polite">Connecting to public feed…</div><div class="timestamps"><div>Quote check: <strong id="lastQuotes">Never</strong></div><div>Candle check: <strong id="lastCandles">Never</strong></div><div>Source: <strong>biquote public API</strong></div></div><div class="notice">Market timestamps are UTC. Quotes can be delayed or unavailable. A displayed price is <strong>not</strong> a JustMarkets executable quote. Safari may pause refreshes in the background.</div></section>
 <section class="stats" aria-label="Market overview"><div class="stat"><span>Markets tracked</span><strong>7</strong></div><div class="stat"><span>Recent quotes</span><strong id="freshQuotes">0</strong></div><div class="stat"><span>Recent M1 data</span><strong id="freshCandles">0</strong></div><div class="stat"><span>Available M5 trends</span><strong id="availableTrends">0</strong></div></section>
 <section aria-label="Market quotes"><div class="sectiontop"><div><h2>Market watch</h2><p>Tap any market to explore its chart and indicators.</p></div><div class="filters" aria-label="Market categories"><button class="filter on" type="button" data-filter="all">All 7</button><button class="filter" type="button" data-filter="forex">Forex</button><button class="filter" type="button" data-filter="metals">Gold</button><button class="filter" type="button" data-filter="crypto">Bitcoin</button></div></div><div class="feedlegend"><span>LIVE = fresh public tick</span><span>FEED DELAYED = stale or provider unavailable</span><span>WEEKEND = indicative session closure</span></div><div class="market-grid" id="marketGrid"></div></section>
 <section class="diagnostics" aria-label="Feed health" id="feedDiagnostics">
-<div class="sectiontop"><div><h2>Feed health</h2><p>Quote and candle freshness are checked separately. Independent quote, spread and candle checks flag unreliable data before any paper setup.</p></div><span class="smallbadge">READ ONLY</span></div>
+<div class="sectiontop"><div><h2>Feed health</h2><p>Quotes and candles are checked separately. Where supported, short gaps trigger a limited retry from the same public provider; unrepaired gaps remain flagged.</p></div><span class="smallbadge">READ ONLY</span></div>
 <div id="healthGrid" class="health-grid"></div>
 <div class="panel compare-panel" id="brokerCompare"><div class="sectiontop"><div><h3>Compare with a JustMarkets chart</h3><p>Optional, manual check: type one quote you can see in your JustMarkets app. No account login or credentials.</p></div><span class="smallbadge">MANUAL SNAPSHOT</span></div>
-<div class="compare-controls"><label>Market<select id="brokerPair"><option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="AUDUSD">AUD/USD</option><option value="USDCAD">USD/CAD</option><option value="XAUUSD">Gold XAU/USD</option><option value="BTCUSD">Bitcoin BTC/USD</option></select></label><label>Price visible on JustMarkets<input type="text" inputmode="decimal" autocomplete="off" id="brokerPrice" placeholder="e.g. 1.12345" maxlength="18" aria-label="JustMarkets chart price"></label><button type="button" class="btn secondary" id="compareButton">Compare prices</button></div>
+<div class="compare-controls"><label>Market<select id="brokerPair"><option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="AUDUSD">AUD/USD</option><option value="USDCAD">USD/CAD</option><option value="XAUUSD">Gold XAU/USD</option><option value="BTCUSD">Bitcoin BTC/USD</option></select></label><label>JustMarkets chart price or bid<input type="text" inputmode="decimal" autocomplete="off" id="brokerPrice" placeholder="e.g. 1.12345" maxlength="18" aria-label="JustMarkets price or bid"></label><label>JustMarkets ask (optional)<input type="text" inputmode="decimal" autocomplete="off" id="brokerAsk" placeholder="e.g. 1.12351" maxlength="18" aria-label="JustMarkets ask price (optional)"></label><button type="button" class="btn secondary" id="compareButton">Compare prices</button></div>
 <div id="comparisonResult" class="compare-result" aria-live="polite">Enter a chart price and tap Compare prices. A chart close, bid and ask are different types of price; compare like-for-like where possible.</div><p class="notice">This is a one-time manual comparison, not a live JustMarkets connection. Public prices can differ from broker prices because of timing, liquidity, instrument specifications and spreads. Never enter a password or API key here.</p></div></section>
-<section aria-label="Paper setup scanner" class="setup-head" id="setupSection"><div class="sectiontop"><div><h2>Signal readiness · BUY / WAIT / SELL</h2><p>Rule-based reading of the newest completed M1/M5 candles. Press <strong>Scan now</strong> above for a fresh request.</p></div><span class="smallbadge">PAPER ONLY · NO ORDERS</span></div><p class="setupnote">Each card shows a changing <strong>trend bias</strong> and separately checks five strict conditions for both directions: M5 price trend, M1 EMA 9/21 direction, RSI, ADX and a crossover on the newest completed M1 candle. A valid setup is displayed only when all five match <em>and</em> quotes and candles are recent. For a qualifying setup, the entry/stop/target <strong>price ranges are hypothetical sensitivity bands</strong> centered on public quotes (± 0.10 ATR entry; 1.00 ATR stop; 1.50 ATR target), not instructions for trading. Broker prices, execution costs, and market gaps can differ. A WAIT signal is never artificially converted into BUY or SELL merely to increase activity.</p><div id="setups" class="setups" aria-live="polite"></div></section>
+<section aria-label="Paper setup scanner" class="setup-head" id="setupSection"><div class="sectiontop"><div><h2>Market assessments · BUY / WAIT / SELL</h2><p>Rule-based reading of the newest completed M1/M5 candles. Press <strong>Scan now</strong> above for a fresh request.</p></div><span class="smallbadge">PAPER ONLY · NO ORDERS</span></div><p class="setupnote">Your scanner checks its indicator strategy <strong>in the background</strong>. The dashboard shows only <strong>BUY, SELL or WAIT</strong>, a brief market summary and, when data passes every check, illustrative paper entry/stop/target ranges. BUY and SELL are simulated research labels—not instructions to enter a live trade. The scanner does not force signals to appear.</p><div id="setups" class="setups" aria-live="polite"></div></section>
 <section class="pattern-history" aria-label="Historical pattern archive" id="patternHistory">
 <div class="sectiontop"><div><h2>Last detected patterns</h2><p>Historical matches found in loaded M1 candles, not notifications or open positions.</p></div><span class="smallbadge" id="patternCount">0 SAVED</span></div>
 <div id="recentPatterns" class="latest-grid"></div>
 <div class="panel archive"><div class="archive-head"><div><h3>Pattern history</h3><p>Newest first • Times UTC • Stored only in this browser</p></div><div class="archive-controls"><label for="historyPair">Market</label><select id="historyPair"><option value="all">All markets</option><option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="AUDUSD">AUD/USD</option><option value="USDCAD">USD/CAD</option><option value="XAUUSD">XAU/USD</option><option value="BTCUSD">BTC/USD</option></select><button class="btn secondary clear" type="button" id="clearHistory">Clear</button></div></div>
 <div class="archive-scroll"><table class="archive-table"><thead><tr><th>Closed (UTC)</th><th>Market</th><th>Pattern</th><th>Historical price</th><th>ATR</th><th>Detected</th></tr></thead><tbody id="historyRows"></tbody></table></div>
 <p class="notice">Patterns can be backfilled from historical candles and are <strong>not</strong> evidence of a live alert. “Seen on refresh” means this browser first saw that candle after an update, not that the pattern formed at that moment. The latest historical pattern may be hours or days old. Clearing this browser history does not affect the market feed. No broker trades are made.</p></div></section>
-<section class="content-grid" aria-label="Market analysis"><div class="panel chartwrap"><div class="chartbar"><h2>Candlestick chart</h2><div class="selector"><label for="marketSelect" class="byline">Market</label><select id="marketSelect"><option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="AUDUSD">AUD/USD</option><option value="USDCAD">USD/CAD</option><option value="XAUUSD">Gold XAU/USD</option><option value="BTCUSD">Bitcoin BTC/USD</option></select><button type="button" class="tbtn on" data-tf="M1">M1</button><button type="button" class="tbtn" data-tf="M5">M5</button></div></div><div id="chart" class="chart"><p style="padding:80px 10px;text-align:center;color:#a6b8d1">Waiting for market candles…</p></div><div class="legend"><span><i style="background:#eacb80"></i>EMA 9</span><span><i style="background:#a6baff"></i>EMA 21</span><span><i style="background:#b6a2ef"></i>M5 EMA 200 (M1 chart only)</span></div><div id="chartTip" class="chartfoot">Choose a market and tap a candle to inspect its prices.</div><div class="chartnav"><button type="button" id="older">← Older</button><small id="chartRange">Latest completed candles</small><button type="button" id="newer">Newer →</button></div></div><aside class="panel detail" aria-label="Technical readings"><div class="detail-head"><h2>Technical overview</h2><span id="technicalAge" class="chip">NO DATA</span></div><div class="detailsub" id="technicalPair">EUR/USD • M1 + M5</div><div class="trendbox"><div><div class="trendtitle">Observed indicator trend</div><div id="trendValue" class="trendvalue">Awaiting data</div></div><span id="trendNote" class="chip">—</span></div><div id="indicatorGrid" class="indicator-grid"></div><div id="assessment" class="assessment">Indicators will appear after enough completed candles have loaded.</div><p class="separator">Trend labels are descriptive, not predictions or instructions to trade. EMA 9/21 uses M1; the macro trend uses M5 EMA 200. RSI (14), ADX (14) and ATR (14) use completed M1 candles. Hypothetical paper entry/stop/target ranges are displayed only for qualifying setups; no brokerage credentials or automatic orders.</p></aside></section>
-<footer class="separator">Independent public data supplied by <a href="https://biquote.io/docs/" target="_blank" rel="noopener noreferrer">biquote</a>, subject to feed availability. Weekend hours are approximate. A provider saying “closed” midweek is treated as an unverified feed interruption, not evidence that your broker is closed. Irregular spacing in M5 candles is shown as an observed interval, not assumed to be a number of missing minutes. The status LIVE means a recently timestamped public quote, not validated broker execution. Bitcoin runs continuously but public quotes may still pause. Never assume these are JustMarkets executable prices.</footer>
+<section class="content-grid" aria-label="Market analysis"><div class="panel chartwrap"><div class="chartbar"><h2>Candlestick chart</h2><div class="selector"><label for="marketSelect" class="byline">Market</label><select id="marketSelect"><option value="EURUSD">EUR/USD</option><option value="GBPUSD">GBP/USD</option><option value="USDJPY">USD/JPY</option><option value="AUDUSD">AUD/USD</option><option value="USDCAD">USD/CAD</option><option value="XAUUSD">Gold XAU/USD</option><option value="BTCUSD">Bitcoin BTC/USD</option></select><button type="button" class="tbtn on" data-tf="M1">M1</button><button type="button" class="tbtn" data-tf="M5">M5</button></div></div><div id="chart" class="chart"><p style="padding:80px 10px;text-align:center;color:#a6b8d1">Waiting for market candles…</p></div><div class="legend"><span><i style="background:#eacb80"></i>EMA 9</span><span><i style="background:#a6baff"></i>EMA 21</span><span><i style="background:#b6a2ef"></i>M5 EMA 200 (M1 chart only)</span></div><div id="chartTip" class="chartfoot">Choose a market and tap a candle to inspect its prices.</div><div class="chartnav"><button type="button" id="older">← Older</button><small id="chartRange">Latest completed candles</small><button type="button" id="newer">Newer →</button></div></div><aside class="panel detail" aria-label="Technical readings"><div class="detail-head"><h2>Chart details</h2><span id="technicalAge" class="chip">NO DATA</span></div><div class="detailsub" id="technicalPair">EUR/USD • M1 + M5</div><div class="trendbox"><div><div class="trendtitle">Observed indicator trend</div><div id="trendValue" class="trendvalue">Awaiting data</div></div><span id="trendNote" class="chip">—</span></div><div id="indicatorGrid" class="indicator-grid"></div><div id="assessment" class="assessment">Indicators will appear after enough completed candles have loaded.</div><p class="separator">The indicator engine runs behind the scenes. Chart values are for learning and research, not order instructions or reliable profit predictions. No brokerage credentials or automatic orders.</p></aside></section>
+<footer class="separator">Independent public data supplied by <a href="https://biquote.io/docs/" target="_blank" rel="noopener noreferrer">biquote</a>, subject to feed availability. Weekend hours are approximate. A provider saying “closed” midweek is treated as an unverified feed interruption, not evidence that your broker is closed. Recent gaps may be retried from the same feed; recovered candles are not independently verified. Irregular spacing is always disclosed if it remains unresolved. The status LIVE means a recently timestamped public quote, not validated broker execution. Bitcoin runs continuously but public quotes may still pause. Never assume these are JustMarkets executable prices.</footer>
 </main>
 <script>
 'use strict';
 const PAIRS=['EURUSD','GBPUSD','USDJPY','AUDUSD','USDCAD','XAUUSD','BTCUSD'];
 const $=id=>document.getElementById(id), now=()=>Date.now(), quoteMap=new Map(), m1Map=new Map(), m5Map=new Map(), errors=new Map();
 const QUOTE_MS=10000,CANDLE_MS=60000,QUOTE_FRESH_MS=90000,M1_FRESH_MS=180000,M5_FRESH_MS=660000;
+const repairLastAttempt=new Map(),repairResults=new Map();
 let running=true, quoteBusy=false,candleBusy=false, lastQuoteFetch=0,lastCandleFetch=0,nextQuoteAt=0,nextCandleAt=0,filter='all',pair='EURUSD',tf='M1',chartOffset=0,visibleChart=[],chartWidth=740,chartMargin={left:15,right:88,top:23,bottom:45},timer=null,quoteError='',candleError='';
 const symLabel=s=>s.slice(0,3)+'/'+s.slice(3),nameFor=s=>s==='XAUUSD'?'Gold':s==='BTCUSD'?'Bitcoin':'Forex',digits=s=>s==='USDJPY'?3:s==='XAUUSD'||s==='BTCUSD'?2:5;
 const fmt=(n,d=2)=>Number.isFinite(n)?n.toFixed(d):'—';
@@ -137,7 +138,7 @@ function quoteView(s){const q=quoteMap.get(s),v=quoteState(q,s),trend=technical(
 function renderQuotes(){const matches=PAIRS.filter(s=>filter==='all'||(filter==='forex'&&!['BTCUSD','XAUUSD'].includes(s))||(filter==='metals'&&s==='XAUUSD')||(filter==='crypto'&&s==='BTCUSD'));$('marketGrid').innerHTML=matches.map(quoteView).join('');$('freshQuotes').textContent=PAIRS.filter(s=>quoteState(quoteMap.get(s),s).klass==='good').length;$('freshCandles').textContent=PAIRS.filter(s=>technical(s)?.m1fresh).length;$('availableTrends').textContent=PAIRS.filter(s=>technical(s)?.fresh).length;const fresh=PAIRS.filter(s=>quoteState(quoteMap.get(s),s).klass==='good').length,sp=$('statusPill');sp.textContent=!running?'WATCH PAUSED':fresh?`${fresh}/7 LIVE QUOTES`:'NO LIVE QUOTES';sp.className='smallbadge '+(fresh?'active':!running?'warning':'');$('lastQuotes').textContent=lastQuoteFetch?utc(lastQuoteFetch):'Never';$('lastCandles').textContent=lastCandleFetch?utc(lastCandleFetch):'Never';}
 function closedBars(s,t){const values=t==='M1'?m1Map.get(s):m5Map.get(s),span=t==='M1'?60000:300000;return (values||[]).filter(x=>x.t+span<=now());}
 function technical(s){const a=closedBars(s,'M1'),b=closedBars(s,'M5');if(a.length<30||b.length<200)return null;const last=a.at(-1),prev=b.at(-1),m1fresh=now()-(last.t+60000)<=M1_FRESH_MS&&now()>=last.t+60000,m5fresh=now()-(prev.t+300000)<=M5_FRESH_MS&&now()>=prev.t+300000;const prices=a.map(r=>r.c),f=ema(prices,9),sl=ema(prices,21),macro=ema(b.map(r=>r.c),200),r=rsi(prices),{adx,atr}=adxAtr(a);const i=a.length-1,ema9=f[i],ema21=sl[i],m5=macro.at(-1),rsi14=r[i],adx14=adx[i],atr14=atr[i];if([ema9,ema21,m5,rsi14,adx14,atr14].some(x=>!Number.isFinite(x)))return null;let label='MIXED';if(last.c>m5&&ema9>ema21)label='UPTREND';else if(last.c<m5&&ema9<ema21)label='DOWNTREND';return{label,fresh:m1fresh&&m5fresh,m1fresh,m5fresh,last,ema9,ema21,m5,rsi14,adx14,atr14,m5last:prev};}
-function renderDetails(){const v=technical(pair),q=quoteState(quoteMap.get(pair),pair);$('technicalPair').textContent=symLabel(pair)+' · latest completed M1/M5';const badge=$('technicalAge');badge.textContent=!v?'NO DATA':v.fresh?'CURRENT CANDLES':'OLD CANDLES';badge.className='chip '+(v?.fresh?'good':'old');$('trendValue').textContent=!v?'Awaiting candles':v.fresh?v.label:'STALE DATA';$('trendValue').style.color=v?.fresh?(v.label==='UPTREND'?'#68e2cf':v.label==='DOWNTREND'?'#ff98aa':'#ecc989'):'#eef6ff';$('trendNote').textContent=!v?'—':v.adx14>20?'ADX > 20':'ADX ≤ 20';const vals=v?[['M1 EMA 9',fmt(v.ema9,digits(pair))],['M1 EMA 21',fmt(v.ema21,digits(pair))],['M5 EMA 200',fmt(v.m5,digits(pair))],['RSI 14',fmt(v.rsi14)],['ADX 14',fmt(v.adx14)],['ATR 14',fmt(v.atr14,digits(pair))]]:[['M1 EMA 9','—'],['M1 EMA 21','—'],['M5 EMA 200','—'],['RSI 14','—'],['ADX 14','—'],['ATR 14','—']];$('indicatorGrid').innerHTML=vals.map(([k,x])=>`<div class="reading"><small>${k}</small><strong>${x}</strong></div>`).join('');const extra=errors.get(pair);$('assessment').textContent=!v?`Waiting for sufficient valid M1 and M5 history. ${extra||''}`:!v.fresh?`Last M1 candle closed at ${utc(v.last.t+60000)}; last M5 candle closed at ${utc(v.m5last.t+300000)}. These readings are old and must not be treated as current.`:v.label==='MIXED'?`The EMA direction and M5 reference are not aligned. RSI ${fmt(v.rsi14)}; ADX ${fmt(v.adx14)}. This describes recent conditions, not a forecast.`:`Observed ${v.label.toLowerCase()} based on M1 EMA alignment and price against the M5 EMA 200. RSI ${fmt(v.rsi14)}; ADX ${fmt(v.adx14)}. No direction is guaranteed. Quote status: ${q.label}.`}
+function renderDetails(){const v=technical(pair),q=quoteState(quoteMap.get(pair),pair);$('technicalPair').textContent=symLabel(pair)+' · latest completed M1/M5';const badge=$('technicalAge');badge.textContent=!v?'NO DATA':v.fresh?'CURRENT CANDLES':'OLD CANDLES';badge.className='chip '+(v?.fresh?'good':'old');$('trendValue').textContent=!v?'Awaiting candles':v.fresh?v.label:'STALE DATA';$('trendValue').style.color=v?.fresh?(v.label==='UPTREND'?'#68e2cf':v.label==='DOWNTREND'?'#ff98aa':'#ecc989'):'#eef6ff';$('trendNote').textContent=!v?'—':v.fresh?'UPDATED':'DELAYED';const vals=v?[['M1 EMA 9',fmt(v.ema9,digits(pair))],['M1 EMA 21',fmt(v.ema21,digits(pair))],['M5 EMA 200',fmt(v.m5,digits(pair))],['RSI 14',fmt(v.rsi14)],['ADX 14',fmt(v.adx14)],['ATR 14',fmt(v.atr14,digits(pair))]]:[['M1 EMA 9','—'],['M1 EMA 21','—'],['M5 EMA 200','—'],['RSI 14','—'],['ADX 14','—'],['ATR 14','—']];$('indicatorGrid').innerHTML=vals.map(([k,x])=>`<div class="reading"><small>${k}</small><strong>${x}</strong></div>`).join('');const extra=errors.get(pair);$('assessment').textContent=!v?`Waiting for sufficient valid M1 and M5 history. ${extra||''}`:!v.fresh?`Last M1 candle closed at ${utc(v.last.t+60000)}; last M5 candle closed at ${utc(v.m5last.t+300000)}. These readings are old and must not be treated as current.`:v.label==='MIXED'?`The EMA direction and M5 reference are not aligned. RSI ${fmt(v.rsi14)}; ADX ${fmt(v.adx14)}. This describes recent conditions, not a forecast.`:`Observed ${v.label.toLowerCase()} based on M1 EMA alignment and price against the M5 EMA 200. RSI ${fmt(v.rsi14)}; ADX ${fmt(v.adx14)}. No direction is guaranteed. Quote status: ${q.label}.`}
 
 // Scan-ready paper scenarios; no trade-execution code.
 function setupCheck(s){
@@ -210,7 +211,9 @@ function diagnostics(s){
  const atr=v?.atr14,ratio=Number.isFinite(atr)&&atr>0&&Number.isFinite(spread)?spread/atr:NaN;
  const flags=[],notes=[];
  if(!validBook)flags.push('No valid public bid/ask pair');
- if(validBook&&Number.isFinite(q.mid)&&(q.mid<q.bid-1e-10||q.mid>q.ask+1e-10))flags.push('Public midpoint is outside bid/ask');
+ if(validBook&&Number.isFinite(q.reportedMid)&&(q.reportedMid<q.bid-2*Math.pow(10,-digits(s))||q.reportedMid>q.ask+2*Math.pow(10,-digits(s))))flags.push('Provider-reported midpoint differs from bid/ask');
+ if(validBook&&Number.isFinite(q.reportedSpread)&&Math.abs(q.reportedSpread-spread)>Math.max(Math.pow(10,-digits(s))*2,spread*.25))flags.push('Provider-reported spread differs from bid/ask');
+
  if(qs.label!=='LIVE')flags.push('Quote: '+qs.label.toLowerCase()+' ('+qs.reason+')');
  if(!Number.isFinite(c.m1Age)||c.m1Age>M1_FRESH_MS)flags.push('M1 candles delayed');
  if(!Number.isFinite(c.m5Age)||c.m5Age>M5_FRESH_MS)flags.push('M5 candles delayed');
@@ -220,6 +223,7 @@ function diagnostics(s){
  if(q&&v&&Number.isFinite(atr)&&Math.abs(q.mid-v.last.c)>3*atr)flags.push('Public quote / latest closed M1 mismatch (>3 ATR)');
  if(errors.has(s))flags.push(errors.get(s));
  if(Number.isFinite(c.m5Age)&&c.m5Age<=300000)notes.push('M5 age below 5m is normal between closes');
+ if(repairResults.get(s))notes.push(repairResults.get(s));
  if(Number.isFinite(ratio))notes.push('Spread '+unitText(s,spread)+' / M1 ATR '+unitText(s,atr));
  const ready=flags.length===0&&v?.fresh===true&&validBook;
  return {s,qs,c,spread,atr,ratio,flags,notes,ready};
@@ -232,28 +236,36 @@ function renderDiagnostics(){
  }).join('');
 }
 function compareBrokerPrice(){
- const s=$('brokerPair').value,raw=$('brokerPrice').value.trim().replace(',','.');
+ const s=$('brokerPair').value,raw=$('brokerPrice').value.trim().replace(',','.'),rawAsk=$('brokerAsk').value.trim().replace(',','.');
  const el=$('comparisonResult'),q=quoteMap.get(s),d=diagnostics(s);
  el.className='compare-result';
- if(!/^(?:\d+\.?\d*|\.\d+)$/.test(raw)||!(Number(raw)>0)||!Number.isFinite(Number(raw))){el.textContent='Enter a positive numeric price from your JustMarkets chart (no passwords or account details).';el.classList.add('bad');return;}
- const price=Number(raw);
- if(!q||!Number.isFinite(q.mid)||d.qs.label!=='LIVE'){el.textContent=`No fresh public quote for ${symLabel(s)}. Compare again when this market has a recent public quote.`;el.classList.add('bad');return;}
- const difference=price-q.mid,absolute=Math.abs(difference),p=pipSize(s),unit=p?fmt(absolute/p,2)+' pips':fmt(absolute,digits(s))+' USD';
- const pct=fmt(absolute/q.mid*100,4)+'%';
+ const valid=x=>/^(?:\d+\.?\d*|\.\d+)$/.test(x)&&Number.isFinite(Number(x))&&Number(x)>0;
+ if(!valid(raw)||(rawAsk&&!valid(rawAsk))){el.textContent='Enter a positive price, and optionally a second ask price. Do not enter passwords or account details.';el.classList.add('bad');return;}
+ const price=Number(raw),ask=rawAsk?Number(rawAsk):NaN;
+ if(Number.isFinite(ask)&&ask<price){el.textContent='Ask must be greater than or equal to bid.';el.classList.add('bad');return;}
+ if(!q||!Number.isFinite(q.mid)||d.qs.label!=='LIVE'){el.textContent=`No recent public quote for ${symLabel(s)}. Compare when quotes are current.`;el.classList.add('bad');return;}
+ const brokerMid=Number.isFinite(ask)?(price+ask)/2:price;
+ const difference=brokerMid-q.mid,absolute=Math.abs(difference),p=pipSize(s),unit=p?fmt(absolute/p,2)+' pips':fmt(absolute,digits(s))+' USD';
  const comparable=Number.isFinite(d.atr)&&d.atr>0?absolute/d.atr:NaN;
- const when=utc(now());
  el.classList.toggle('warn',Number.isFinite(comparable)&&comparable>.5);
- el.textContent=`${symLabel(s)} · manual JustMarkets ${fmt(price,digits(s))} vs public midpoint ${fmt(q.mid,digits(s))}. Absolute difference: ${unit} (${pct}; ${Number.isFinite(comparable)?fmt(comparable,2)+'× M1 ATR':'ATR unavailable'}). Public quote age ${ageLabel(d.qs.age)}. Compared at ${when}. These are NOT simultaneous or necessarily matching quote types; a difference does not by itself prove either feed is wrong.`;
+ const spreadLine=Number.isFinite(ask)&&Number.isFinite(d.spread)?` Broker bid/ask spread: ${unitText(s,ask-price)}; public feed spread: ${unitText(s,d.spread)}. These are different-time observations.`:'';
+ el.textContent=`${symLabel(s)} · manual ${Number.isFinite(ask)?'bid/ask midpoint':'chart price'} ${fmt(brokerMid,digits(s))} vs public midpoint ${fmt(q.mid,digits(s))}. Difference ${unit} (${fmt(absolute/q.mid*100,4)}%; ${Number.isFinite(comparable)?fmt(comparable,2)+'× M1 ATR':'ATR unavailable'}).${spreadLine} Public quote age ${ageLabel(d.qs.age)}. Checked ${utc(now())}. Not a synchronized broker feed or verification of execution prices.`;
 }
 
 function renderSetups(){
-  const fields=['M5 trend','EMA direction','RSI range','ADX > 20','Fresh crossover'];
   $('setups').innerHTML=PAIRS.map(s=>{
+    // The full five-condition logic still runs internally in setupCheck(s).
     const v=setupCheck(s),d=digits(s);
-    const checklist=(arr,side,score)=>`<div class="readygroup"><strong class="${side==='Bullish'?'up':'down'}">${side} ${score}/5</strong>${fields.map((f,i)=>`<div class="readyrow"><span class="check ${arr[i]?'on':'off'}">${arr[i]?'✓':'○'}</span><span>${f}</span></div>`).join('')}</div>`;
-    const ranges=v.levels?`<div class="signal-label">Hypothetical price scales · ${symLabel(s)}</div><div class="range-grid">${[['entry','Entry band'],['stop','Stop band'],['target','Target band']].map(([k,label])=>`<div class="range-item ${k}"><small>${label}</small><strong>${v.levels[k].map(x=>fmt(x,d)).join(' – ')}</strong></div>`).join('')}</div>`:`<div class="setup-empty">No entry, stop or target ranges while the assessment is WAIT.</div>`;
-    return `<article class="setup"><div class="setup-top"><b>${symLabel(s)}${nameFor(s)==='Forex'?'':' · '+nameFor(s)}</b><span class="signal ${v.signal.toLowerCase()}">${v.signal}</span></div><div class="setup-time">Last completed M1: ${v.last?utc(v.last.t+60000):'Unavailable'} · Quote: ${esc(v.quote)}</div><div class="biasbar"><span class="biaspill ${v.biasClass}">${esc(v.bias)}</span><span class="biasnote">${esc(v.biasNote)}</span></div><div class="readiness">${checklist(v.up,'Bullish',v.scoreUp)}${checklist(v.down,'Bearish',v.scoreDown)}</div><p class="setupreason">${esc(v.reason)}</p>${ranges}<div class="signalnote">All paper scenarios expire when the next M1 candle closes or data becomes stale. This website cannot execute trades.</div></article>`;
+    const ranges=v.levels?`<div class="signal-label">Hypothetical paper price ranges · ${symLabel(s)}</div><div class="range-grid">${[['entry','Entry reference'],['stop','Stop-loss reference'],['target','Take-profit reference']].map(([k,label])=>`<div class="range-item ${k}"><small>${label}</small><strong>${v.levels[k].map(x=>fmt(x,d)).join(' – ')}</strong></div>`).join('')}</div>`:`<div class="setup-empty">No paper entry, stop or target while the assessment is WAIT.</div>`;
+    const note=v.signal==='WAIT'?simpleWaitReason(s,v):v.signal==='BUY'?'A qualifying bullish pattern was detected on the latest completed candle.': 'A qualifying bearish pattern was detected on the latest completed candle.';
+    return `<article class="setup"><div class="setup-top"><b>${symLabel(s)}${nameFor(s)==='Forex'?'':' · '+nameFor(s)}</b><span class="signal ${v.signal.toLowerCase()}">${v.signal}</span></div><div class="setup-time">M1 candle closed: ${v.last?utc(v.last.t+60000):'Unavailable'} · Public quote: ${esc(v.quote)}</div><div class="biasbar"><span class="biaspill ${v.biasClass}">${esc(v.bias)}</span></div><p class="setupreason">${esc(note)}</p>${ranges}<div class="signalnote">Paper scenarios expire after the next completed M1 candle or if quotes become stale. Not executable JustMarkets prices.</div></article>`;
   }).join('');
+}
+function simpleWaitReason(s,v){
+  if(!v.last)return 'Insufficient valid candle history. The scanner will check again.';
+  const d=diagnostics(s);
+  if(!d.ready)return d.qs.label!=='LIVE'?'Waiting for reliable market quotes. See Feed health.':'Market data needs attention. See Feed health.';
+  return v.bias==='BULLISH BIAS'?'Bullish direction observed, but no new confirmed paper setup.':v.bias==='BEARISH BIAS'?'Bearish direction observed, but no new confirmed paper setup.':'No new confirmed paper setup on this candle.';
 }
 
 const HISTORY_KEY='aperture:v9:patterns',HISTORY_CLEAR_KEY='aperture:v9:clearedAt',HISTORY_LIMIT=150;
@@ -349,7 +361,7 @@ async function fetchQuotes(){
       const safeMid=bookMid>0?bookMid:mid;
       const t=ts(row.timestamp||row.lastQuoteAt);
       const ra=row.quoteAgeSeconds==null?NaN:Number(row.quoteAgeSeconds)*1000;
-      quoteMap.set(s,{bid:cleanBid,ask:cleanAsk,mid:safeMid,time:t,reportedAgeMs:ra,state:String(row.marketState||'').toLowerCase(),stale:row.stale===true,received:now()});
+      quoteMap.set(s,{bid:cleanBid,ask:cleanAsk,mid:safeMid,reportedMid:Number.isFinite(m)&&m>0?m:NaN,reportedSpread:row.spread==null?NaN:Number(row.spread),time:t,reportedAgeMs:ra,state:String(row.marketState||'').toLowerCase(),stale:row.stale===true,received:now()});
       n++;
     }
     if(!n)throw Error('No usable quotes returned');
@@ -358,16 +370,44 @@ async function fetchQuotes(){
   }catch(e){quoteError='Quote feed delayed: '+String(e.message||e);nextQuoteAt=now()+30000;}
   finally{quoteBusy=false;renderQuotes();renderDiagnostics();renderSetups();showStatus()}
 }
+// Retry short, recent gaps from a separate *request* to the SAME source.
+// Do not synthesize candles: if an actual closed bar is unavailable, preserve the gap warning.
+function recentGapCount(rows,span){
+ if(!Array.isArray(rows)||rows.length<2)return 0;
+ let missing=0;for(let i=Math.max(1,rows.length-15);i<rows.length;i++){
+  const delta=rows[i].t-rows[i-1].t;
+  if(now()-rows[i].t>65*60000)continue;
+  if(delta>span+5000&&delta<=25*60000&&delta%span===0)missing+=delta/span-1;
+ }return missing;
+}
+async function tryRepairGaps(s,interval,rows){
+ const span=interval==='1m'?60000:300000,key=s+':'+interval,gaps=recentGapCount(rows,span);
+ if(!gaps)return rows;
+ if(now()-(repairLastAttempt.get(key)||0)<5*60000)return rows;
+ repairLastAttempt.set(key,now());
+ try{
+  const start=new Date(now()-65*60000).toISOString(),end=new Date().toISOString();
+  const url='https://biquote.io/api/'+s+'/ohlc?interval='+interval+'&from='+encodeURIComponent(start)+'&to='+encodeURIComponent(end)+'&limit=1000';
+  const recovered=parseBars(await jsonFetch(url,16000));
+  const merged=new Map(rows.map(b=>[b.t,b]));
+  for(const bar of recovered){if(bar.t%span===0 && bar.t+span<=now() && !merged.has(bar.t))merged.set(bar.t,bar);}
+  const out=[...merged.values()].sort((a,b)=>a.t-b.t).slice(-1400);
+  const filled=Math.max(0,gaps-recentGapCount(out,span));
+  repairResults.set(s,filled?`Backfilled ${filled} recent ${interval} bar(s) via same provider; not independently verified`:`${interval} data still has ${gaps} recent gap(s) after retry`);
+  return out;
+ }catch(e){repairResults.set(s,`Retry of ${interval} gaps failed; original data retained`);return rows;}
+}
 async function fetchOne(s){
   const root='https://biquote.io/api/'+s+'/ohlc?',fetchTf=(interval,limit)=>jsonFetch(root+'interval='+interval+'&limit='+limit,22000).then(parseBars);
   for(let attempt=0;attempt<2;attempt++){
     try{
-      const [m1,m5]=await Promise.all([fetchTf('1m',1000),fetchTf('5m',350)]);
+      const [raw1,raw5]=await Promise.all([fetchTf('1m',1000),fetchTf('5m',350)]);
+      const [m1,m5]=await Promise.all([tryRepairGaps(s,'1m',raw1),tryRepairGaps(s,'5m',raw5)]);
       if(m1.length<30||m5.length<200)throw Error('Insufficient completed candle history');
       // Reject a newly delivered series if its most recent candle goes backwards.
       const old1=m1Map.get(s)?.at(-1)?.t??-Infinity,old5=m5Map.get(s)?.at(-1)?.t??-Infinity;
-      if(m1.at(-1).t>=old1)m1Map.set(s,m1);
-      if(m5.at(-1).t>=old5)m5Map.set(s,m5);
+      if(m1.at(-1).t>=old1)m1Map.set(s,[...new Map([...(m1Map.get(s)||[]),...m1].map(x=>[x.t,x])).values()].sort((x,y)=>x.t-y.t).slice(-1400));
+      if(m5.at(-1).t>=old5)m5Map.set(s,[...new Map([...(m5Map.get(s)||[]),...m5].map(x=>[x.t,x])).values()].sort((x,y)=>x.t-y.t).slice(-1400));
       errors.delete(s);recordHistory(s);return true;
     }catch(e){
       if(attempt===1){errors.set(s,'Candle feed delayed: '+String(e.message||e));return false;}
