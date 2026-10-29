@@ -34,15 +34,17 @@ const $=id=>document.getElementById(id);
 const LABELS={EURUSD:'EUR/USD',GBPUSD:'GBP/USD',USDJPY:'USD/JPY',AUDUSD:'AUD/USD',USDCAD:'USD/CAD',XAUUSD:'Gold (XAU/USD)',BTCUSD:'Bitcoin (BTC/USD)'};
 const DIGITS={EURUSD:5,GBPUSD:5,USDJPY:3,AUDUSD:5,USDCAD:5,XAUUSD:2,BTCUSD:2};
 const TF_LABELS={'1m':'M1','5m':'M5','15m':'M15','30m':'M30','1h':'H1','4h':'H4'};
-let busy=false,lastScanAt=0;
+let busy=false,lastScanAt=0,scanRunId=0;
+const candleCache=new Map();
 const HISTORY_KEY='yrt_signal_history_v1';
 function readHistory(){try{const v=JSON.parse(localStorage.getItem(HISTORY_KEY)||'[]');return Array.isArray(v)?v:[]}catch(_){return []}}
 function saveHistory(items){try{localStorage.setItem(HISTORY_KEY,JSON.stringify(items.slice(0,100)));return true}catch(_){return false}}
 function renderHistory(){const items=readHistory();const done=items.filter(x=>x.outcome==='CORRECT'||x.outcome==='INCORRECT');const correct=done.filter(x=>x.outcome==='CORRECT').length;$('trackedCount').textContent=String(items.length);$('correctCount').textContent=String(correct);$('accuracyRate').textContent=done.length?Math.round(correct/done.length*100)+'%':'—';if(!items.length){$('historyList').className='history-empty';$('historyList').textContent='Your scanned signals will appear here.';return}const rows=items.slice(0,12).map(x=>'<tr><td>'+x.marketLabel+'</td><td>'+x.tfLabel+'</td><td>'+x.signal+'</td><td>'+Number(x.entry).toFixed(x.digits)+'</td><td>'+(x.outcome==='PENDING'?'Pending':x.outcome==='CORRECT'?'Correct':x.outcome==='INCORRECT'?'Incorrect':'No move')+'</td></tr>').join('');$('historyList').className='table-wrap';$('historyList').innerHTML='<table class="history-table"><thead><tr><th>Market</th><th>TF</th><th>Signal</th><th>Close</th><th>After 3 candles</th></tr></thead><tbody>'+rows+'</tbody></table>'}
 function updateHistory(symbol,interval,latest,step,digits,direction){let items=readHistory();items=items.map(x=>{if(x.outcome!=='PENDING'||x.market!==symbol||x.timeframe!==interval||latest.t<x.candleTime+3*step)return x;const delta=latest.c-x.entry;const eps=Math.max(Math.abs(x.entry)*0.00001,Number.EPSILON);const correct=x.signal==='BUY'?delta>eps:x.signal==='SELL'?delta< -eps:false;return {...x,outcome:Math.abs(delta)<=eps?'FLAT':correct?'CORRECT':'INCORRECT',resolvedAt:latest.t}});if(direction==='BUY'||direction==='SELL'){const exists=items.some(x=>x.market===symbol&&x.timeframe===interval&&x.candleTime===latest.t);if(!exists)items.unshift({market:symbol,marketLabel:LABELS[symbol],timeframe:interval,tfLabel:TF_LABELS[interval],signal:direction,entry:latest.c,candleTime:latest.t,step,digits,outcome:'PENDING',createdAt:Date.now()})}saveHistory(items.slice(0,100));renderHistory()}
 
-const MIN_SCAN_GAP_MS=5000;
+const MIN_SCAN_GAP_MS=1200;
 const AUTO_REFRESH_MS=15000;
+const CANDLE_CACHE_MS=4000;
 function fmt(n,s){return Number.isFinite(n)?n.toLocaleString('en-US',{minimumFractionDigits:s,maximumFractionDigits:s}):'—'}
 function parseTime(v){if(v==null)return NaN;let s=String(v).trim().replace(' ','T');if(!/[Zz]|[+-]\d\d:?\d\d$/.test(s))s+='Z';return Date.parse(s)}
 function parseBars(obj,step){if(!Array.isArray(obj?.bars))throw Error(obj?.message||'Provider returned no candle list');const map=new Map();for(const b of obj.bars){if(b.isOpen===true)continue;const t=parseTime(b.openTime),o=Number(b.open),h=Number(b.high),l=Number(b.low),c=Number(b.close);if(!Number.isFinite(t)||t%step!==0||![o,h,l,c].every(x=>Number.isFinite(x)&&x>0)||h<Math.max(o,l,c)||l>Math.min(o,h,c))continue;map.set(t,{t,o,h,l,c})}return [...map.values()].sort((a,b)=>a.t-b.t).filter((b,i,a)=>i===0||b.t>a[i-1].t).slice(-500)}
@@ -68,15 +70,22 @@ async function scan(){
  if(busy)return;
  const waitMs=MIN_SCAN_GAP_MS-(Date.now()-lastScanAt);
  if(waitMs>0){$('status').textContent='Please wait '+Math.ceil(waitMs/1000)+'s before requesting another scan.';return;}
- lastScanAt=Date.now();busy=true;$('scan').disabled=true;$('scan').textContent='Scanning…';$('status').className='status';$('status').textContent='Requesting selected market data…';
- const symbol=$('market').value,interval=$('timeframe').value,label=LABELS[symbol],step=({'1m':60000,'5m':300000,'15m':900000,'30m':1800000,'1h':3600000,'4h':14400000})[interval];
+ lastScanAt=Date.now();busy=true;const runId=++scanRunId;$('scan').disabled=true;$('scan').textContent='Scanning…';$('status').className='status';$('status').textContent='Updating market data…';
+ const symbol=$('market').value,interval=$('timeframe').value,label=LABELS[symbol],step=({'1m':60000,'5m':300000,'15m':900000,'30m':1800000,'1h':3600000,'4h':14400000})[interval],cacheKey=symbol+'|'+interval;
  $('resultPair').textContent=label;setWait('Checking candle data for '+label+' on '+TF_LABELS[interval]+'…','Selected timeframe: '+TF_LABELS[interval]+' · Scanning');
  try{
-  const url='https://biquote.io/api/'+symbol+'/ohlc?interval='+encodeURIComponent(interval)+'&limit=250';
-  const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);let response;
-  try{response=await fetch(url,{cache:'no-store',signal:controller.signal})}finally{clearTimeout(timeout)}
-  if(!response.ok)throw Error('Data provider returned HTTP '+response.status);
-  const payload=await response.json(),rows=parseBars(payload,step);
+  let rows;
+  const cached=candleCache.get(cacheKey);
+  if(cached&&Date.now()-cached.at<CANDLE_CACHE_MS){rows=cached.rows;$('status').textContent='Using just-updated candle data…';}
+  else {
+   const url='https://biquote.io/api/'+symbol+'/ohlc?interval='+encodeURIComponent(interval)+'&limit=100';
+   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),10000);let response;
+   try{response=await fetch(url,{cache:'no-store',signal:controller.signal})}finally{clearTimeout(timeout)}
+   if(!response.ok)throw Error('Data provider returned HTTP '+response.status);
+   const payload=await response.json();rows=parseBars(payload,step);
+   candleCache.set(cacheKey,{at:Date.now(),rows});
+  }
+  if(runId!==scanRunId)return;
   if(rows.length<60)throw Error('Not enough completed '+TF_LABELS[interval]+' candles ('+rows.length+' received). Try another timeframe later.');
   const latest=rows[rows.length-1],age=Date.now()-(latest.t+step);
   if(age>step*3||age< -step)throw Error('Latest candle is stale or timestamp is inconsistent; result held at WAIT.');
@@ -114,18 +123,18 @@ async function scan(){
   $('entry').textContent=fmt(entry,digits);$('stop').textContent=fmt(direction==='SELL'?entry+stopDistance:entry-stopDistance,digits);$('target').textContent=fmt(direction==='SELL'?entry-targetDistance:entry+targetDistance,digits);
   $('explain').textContent=reason;
   updateHistory(symbol,interval,latest,step,digits,direction);
-  $('status').textContent='Scan complete for '+label+' · '+TF_LABELS[interval]+'. No other market was scanned.';
+  $('status').textContent='Updated '+label+' · '+TF_LABELS[interval]+' · '+new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
  }catch(e){
   setWait('Data unavailable or invalid. Try again later.','Selected timeframe: '+TF_LABELS[interval]+' · Scan not validated');
   $('lastCandle').textContent='—';$('dataStatus').textContent='Unavailable / check feed';$('setupScore').textContent='Not assessed';$('riskChecks').textContent='Feed failed validation';
   $('chartMeta').textContent='Refresh failed · showing last validated chart if available.';$('status').className='status error';$('status').textContent='Scan could not be validated. Result remains WAIT.';
- }finally{busy=false;$('scan').disabled=false;$('scan').textContent='◎ Scan Now'}
+ }finally{if(runId===scanRunId){busy=false;$('scan').disabled=false;$('scan').textContent='◎ Scan Now'}}
 }
 $('scan').addEventListener('click',scan);
 $('clearHistory').addEventListener('click',()=>{if(confirm('Clear all saved signal history on this device?')){try{localStorage.removeItem(HISTORY_KEY)}catch(_){}renderHistory()}});
 renderHistory();
 let autoRefreshTimer=null;
-function configureAutoRefresh(){if(autoRefreshTimer!==null){clearInterval(autoRefreshTimer);autoRefreshTimer=null;}if($('autoRefresh').checked){autoRefreshTimer=setInterval(()=>{if(!document.hidden&&!busy)scan();},AUTO_REFRESH_MS);$('status').textContent='Auto refresh on · selected market checks every 15 seconds.';}else{$('status').textContent='Auto refresh off · tap Scan Now when ready.';}}
+function configureAutoRefresh(){if(autoRefreshTimer!==null){clearInterval(autoRefreshTimer);autoRefreshTimer=null;}if($('autoRefresh').checked){autoRefreshTimer=setInterval(()=>{if(!document.hidden&&!busy)scan();},AUTO_REFRESH_MS);$('status').textContent='Auto refresh on · checks every 15 seconds.';}else{$('status').textContent='Auto refresh off · tap Scan Now when ready.';}}
 $('autoRefresh').addEventListener('change',configureAutoRefresh);
 configureAutoRefresh();
 $('market').addEventListener('change',()=>{const s=$('market').value;$('resultPair').textContent=LABELS[s];$('resultMeta').textContent='Selected timeframe: '+TF_LABELS[$('timeframe').value]+' · Not scanned yet';setWait('Selection changed. Scan again.','Selected timeframe: '+TF_LABELS[$('timeframe').value]+' · Not scanned yet');$('lastCandle').textContent='—';$('dataStatus').textContent='Not scanned';$('status').textContent='Idle — tap Scan Now to scan '+LABELS[s]+'.'});
